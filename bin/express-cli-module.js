@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/**
+ * ES6+문법으로 프로젝트 생성하는 코드
+ */
+
 var ejs = require("ejs");
 var fs = require("fs");
 var minimatch = require("minimatch");

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-
+/**
+ * express-generator 기본 코드
+ */
 var ejs = require("ejs");
 var fs = require("fs");
 var minimatch = require("minimatch");

@@ -18,6 +18,7 @@ import <%- variable %> from '<%- localModules[variable] %>';
 <% }); -%>
 
 const app = express();
+app.disable("x-powered-by");
 
 <% if (view) { -%>
 // view engine setup

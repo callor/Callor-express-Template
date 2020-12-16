@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-
+/**
+ * express로 프로젝트를 생성할때 실행되는 코드
+ * 기본 view : pug, ES6+ 문법 코드로 생성하도록 변경
+ */
 var ejs = require("ejs");
 var fs = require("fs");
 var minimatch = require("minimatch");

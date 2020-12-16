@@ -18,6 +18,8 @@ import <%- variable %> from '<%- localModules[variable] %>';
 <% }); -%>
 
 const app = express();
+
+// Disable the fingerprinting of this web technology. 경고
 app.disable("x-powered-by");
 
 <% if (view) { -%>

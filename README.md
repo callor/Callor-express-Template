@@ -21,5 +21,5 @@
 
 - app.js 다음 코드 추가
 
-  // Disable the fingerprinting of this web technology. 경고 방지
+  // Disable the fingerprinting of this web technology. 경고 방지  
   app.disable("x-powered-by");

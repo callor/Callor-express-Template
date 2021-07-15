@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /**
+ * @since 2020-12-16
  * express로 프로젝트를 생성할때 실행되는 코드
  * 기본 view : pug, ES6+ 문법 코드로 생성하도록 변경
  */
@@ -51,13 +52,35 @@ program
   .name("express")
   .version(VERSION, "    --version")
   .usage("[options] [dir]")
-  .option("-e, --ejs", "add ejs engine support", renamedOption("--ejs", "--view=ejs"))
-  .option("    --pug", "add pug engine support", renamedOption("--pug", "--view=pug"))
-  .option("    --hbs", "add handlebars engine support", renamedOption("--hbs", "--view=hbs"))
-  .option("-H, --hogan", "add hogan.js engine support", renamedOption("--hogan", "--view=hogan"))
-  .option("-v, --view <engine>", "add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)")
+  .option(
+    "-e, --ejs",
+    "add ejs engine support",
+    renamedOption("--ejs", "--view=ejs")
+  )
+  .option(
+    "    --pug",
+    "add pug engine support",
+    renamedOption("--pug", "--view=pug")
+  )
+  .option(
+    "    --hbs",
+    "add handlebars engine support",
+    renamedOption("--hbs", "--view=hbs")
+  )
+  .option(
+    "-H, --hogan",
+    "add hogan.js engine support",
+    renamedOption("--hogan", "--view=hogan")
+  )
+  .option(
+    "-v, --view <engine>",
+    "add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)"
+  )
   .option("    --no-view", "use static html instead of view engine")
-  .option("-c, --css <engine>", "add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)")
+  .option(
+    "-c, --css <engine>",
+    "add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)"
+  )
   .option("    --git", "add .gitignore")
   .option("-f, --force", "force on non-empty directory")
   .parse(process.argv);
@@ -262,7 +285,9 @@ function createApplication(name, dir) {
       break;
     case "sass":
       app.locals.modules.sassMiddleware = "node-sass-middleware";
-      app.locals.uses.push("sassMiddleware({\n  src: path.join('./public'),\n dest: path.join('./public'),\n  indentedSyntax: true, // true = .sass and false = .scss\n  sourceMap: true\n})");
+      app.locals.uses.push(
+        "sassMiddleware({\n  src: path.join('./public'),\n dest: path.join('./public'),\n  indentedSyntax: true, // true = .sass and false = .scss\n  sourceMap: true\n})"
+      );
       pkg.dependencies["node-sass-middleware"] = "0.11.0";
       break;
     case "stylus":
@@ -429,7 +454,10 @@ function launchedFromCmd() {
  */
 
 function loadTemplate(name) {
-  var contents = fs.readFileSync(path.join(__dirname, "..", "templates", name + ".ejs"), "utf-8");
+  var contents = fs.readFileSync(
+    path.join(__dirname, "..", "templates", name + ".ejs"),
+    "utf-8"
+  );
   var locals = Object.create(null);
 
   function render() {
@@ -465,7 +493,10 @@ function main() {
 
   // Default view engine
   if (program.view === true) {
-    warning("the default view engine will not be pug in future releases\n" + "use `--view=jade' or `--help' for additional options");
+    warning(
+      "the default view engine will not be pug in future releases\n" +
+        "use `--view=jade' or `--help' for additional options"
+    );
     program.view = "pug";
   }
 
@@ -510,7 +541,9 @@ function mkdir(base, dir) {
 
 function renamedOption(originalName, newName) {
   return function (val) {
-    warning(util.format("option `%s' has been renamed to `%s'", originalName, newName));
+    warning(
+      util.format("option `%s' has been renamed to `%s'", originalName, newName)
+    );
     return val;
   };
 }

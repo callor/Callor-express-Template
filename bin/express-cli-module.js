@@ -16,7 +16,7 @@ var util = require("util");
 
 var MODE_0666 = parseInt("0666", 8);
 var MODE_0755 = parseInt("0755", 8);
-var TEMPLATE_DIR = path.join(__dirname, "..", "templates");
+var TEMPLATE_DIR = path.join(__dirname, "..", "templates-module");
 var VERSION = require("../package").version;
 
 var _exit = process.exit;
@@ -454,7 +454,7 @@ function launchedFromCmd() {
 
 function loadTemplate(name) {
   var contents = fs.readFileSync(
-    path.join(__dirname, "..", "templates", name + ".ejs"),
+    path.join(__dirname, "..", "templates-module", name + ".ejs"),
     "utf-8"
   );
   var locals = Object.create(null);

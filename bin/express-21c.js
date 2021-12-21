@@ -171,8 +171,8 @@ function createApplication(name, dir) {
       start: "node ./bin/www.js",
     },
     dependencies: {
-      debug: "~4.3.1",
-      express: "~4.17.1",
+      debug: "~4.3.3",
+      express: "~4.17.2",
     },
   };
 
@@ -201,7 +201,7 @@ function createApplication(name, dir) {
   // Cookie parser
   app.locals.modules.cookieParser = "cookie-parser";
   app.locals.uses.push("cookieParser()");
-  pkg.dependencies["cookie-parser"] = "~1.4.5";
+  pkg.dependencies["cookie-parser"] = "~1.4.6";
 
   if (dir !== ".") {
     mkdir(dir, ".");
@@ -238,7 +238,7 @@ function createApplication(name, dir) {
   if (program.view) {
     // Copy view templates
     mkdir(dir, "views");
-    pkg.dependencies["http-errors"] = "~1.8.0";
+    pkg.dependencies["http-errors"] = "~1.8.1";
     switch (program.view) {
       case "dust":
         copyTemplateMulti("views", dir + "/views", "*.dust");

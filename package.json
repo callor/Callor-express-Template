@@ -1,7 +1,7 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "1.7.6",
+  "version": "1.7.7",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "keywords": [
@@ -23,11 +23,11 @@
   "homepage": "https://www.callor.com",
   "license": "(MIT OR Apache-2.0)",
   "dependencies": {
-    "sorted-object": "2.0.1",
-    "commander": "2.15.1",
-    "mkdirp": "0.5.1",
-    "ejs": "3.1.6",
-    "minimatch": "3.0.4"
+    "commander": "^8.3.0",
+    "ejs": "^3.1.6",
+    "minimatch": "^3.0.4",
+    "mkdirp": "^1.0.4",
+    "sorted-object": "^2.0.1"
   },
   "main": "bin/express-21c.js",
   "preferGlobal": true,
@@ -35,21 +35,21 @@
     "express-21c": "./bin/express-21c.js"
   },
   "devDependencies": {
-    "eslint": "5.16.0",
-    "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "2.17.2",
-    "eslint-plugin-node": "8.0.1",
-    "eslint-plugin-promise": "4.1.1",
-    "eslint-plugin-standard": "4.0.0",
-    "mocha": "6.1.4",
-    "rimraf": "2.6.3",
-    "supertest": "4.0.2",
-    "tree-kill": "1.2.1",
-    "uid-safe": "2.1.5",
-    "validate-npm-package-name": "3.0.0"
+    "eslint": "^8.7.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "mocha": "^9.2.0",
+    "rimraf": "^3.0.2",
+    "supertest": "^6.2.2",
+    "tree-kill": "^1.2.2",
+    "uid-safe": "^2.1.5",
+    "validate-npm-package-name": "^3.0.0"
   },
   "engines": {
-    "node": ">= 10.0"
+    "node": ">= 12.0"
   },
   "files": [
     "LICENSE",

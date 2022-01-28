@@ -238,7 +238,7 @@ function createApplication(name, dir) {
   if (program.view) {
     // Copy view templates
     mkdir(dir, "views");
-    pkg.dependencies["http-errors"] = "~1.8.1";
+    pkg.dependencies["http-errors"] = "~2.0.0";
     switch (program.view) {
       case "dust":
         copyTemplateMulti("views", dir + "/views", "*.dust");
@@ -280,7 +280,7 @@ function createApplication(name, dir) {
     case "less":
       app.locals.modules.lessMiddleware = "less-middleware";
       app.locals.uses.push("lessMiddleware(path.join('./public'))");
-      pkg.dependencies["less-middleware"] = "~3.1.1";
+      pkg.dependencies["less-middleware"] = "~4.1.0";
       break;
     case "sass":
       app.locals.modules.sassMiddleware = "node-sass-middleware";
@@ -320,7 +320,7 @@ function createApplication(name, dir) {
       break;
     case "hbs":
       app.locals.view = { engine: "hbs" };
-      pkg.dependencies.hbs = "~4.1.1";
+      pkg.dependencies.hbs = "~4.2.0";
       break;
     case "hjs":
       app.locals.view = { engine: "hjs" };
@@ -496,7 +496,7 @@ function main() {
   if (program.view === true) {
     warning(
       "the default view engine will not be pug in future releases\n" +
-        "use `--view=jade' or `--help' for additional options"
+        "use `--view=pug' or `--help' for additional options"
     );
     program.view = "pug";
   }

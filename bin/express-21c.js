@@ -74,7 +74,7 @@ program
   )
   .option(
     "-v, --view <engine>",
-    "add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)"
+    "add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to pug)"
   )
   .option("    --no-view", "use static html instead of view engine")
   .option(
@@ -168,11 +168,11 @@ function createApplication(name, dir) {
     version: "0.0.0",
     type: "module",
     scripts: {
-      start: "node ./bin/www.js",
+      start: "node ./bin/www",
     },
     dependencies: {
-      debug: "~4.3.3",
-      express: "~4.17.2",
+      debug: "~4.3.4",
+      express: "~4.18.1",
     },
   };
 
@@ -238,7 +238,7 @@ function createApplication(name, dir) {
   if (program.view) {
     // Copy view templates
     mkdir(dir, "views");
-    pkg.dependencies["http-errors"] = "~2.0.0";
+    pkg.dependencies["http-errors"] = "~1.8.0";
     switch (program.view) {
       case "dust":
         copyTemplateMulti("views", dir + "/views", "*.dust");
@@ -280,7 +280,7 @@ function createApplication(name, dir) {
     case "less":
       app.locals.modules.lessMiddleware = "less-middleware";
       app.locals.uses.push("lessMiddleware(path.join('./public'))");
-      pkg.dependencies["less-middleware"] = "~4.1.0";
+      pkg.dependencies["less-middleware"] = "~3.1.1";
       break;
     case "sass":
       app.locals.modules.sassMiddleware = "node-sass-middleware";
@@ -316,11 +316,11 @@ function createApplication(name, dir) {
       break;
     case "ejs":
       app.locals.view = { engine: "ejs" };
-      pkg.dependencies.ejs = "~3.1.6";
+      pkg.dependencies.ejs = "~3.1.5";
       break;
     case "hbs":
       app.locals.view = { engine: "hbs" };
-      pkg.dependencies.hbs = "~4.2.0";
+      pkg.dependencies.hbs = "~4.1.1";
       break;
     case "hjs":
       app.locals.view = { engine: "hjs" };
@@ -332,7 +332,7 @@ function createApplication(name, dir) {
       break;
     case "pug":
       app.locals.view = { engine: "pug" };
-      pkg.dependencies.pug = "~3.0.2";
+      pkg.dependencies.pug = "3.0.2";
       break;
     case "twig":
       app.locals.view = { engine: "twig" };
@@ -361,7 +361,7 @@ function createApplication(name, dir) {
   write(path.join(dir, "app.js"), app.render());
   write(path.join(dir, "package.json"), JSON.stringify(pkg, null, 2) + "\n");
   mkdir(dir, "bin");
-  write(path.join(dir, "bin/www.js"), www.render(), MODE_0755);
+  write(path.join(dir, "bin/www"), www.render(), MODE_0755);
 
   var prompt = launchedFromCmd() ? ">" : "$";
 
@@ -378,11 +378,9 @@ function createApplication(name, dir) {
   console.log("   run the app:");
 
   if (launchedFromCmd()) {
-    // console.log("     %s SET DEBUG=%s:* & npm start", prompt, name);
-    console.log("     nodemon");
+    console.log("     %s SET DEBUG=%s:* & npm start", prompt, name);
   } else {
-    // console.log("     %s DEBUG=%s:* npm start", prompt, name);
-    console.log("     nodemon");
+    console.log("     %s DEBUG=%s:* npm start", prompt, name);
   }
 
   console.log();

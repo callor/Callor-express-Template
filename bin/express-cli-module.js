@@ -74,7 +74,7 @@ program
   )
   .option(
     "-v, --view <engine>",
-    "add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)"
+    "add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to pug)"
   )
   .option("    --no-view", "use static html instead of view engine")
   .option(
@@ -171,8 +171,8 @@ function createApplication(name, dir) {
       start: "node ./bin/www",
     },
     dependencies: {
-      debug: "~4.3.1",
-      express: "~4.17.1",
+      debug: "~4.3.4",
+      express: "~4.18.1",
     },
   };
 
@@ -201,7 +201,7 @@ function createApplication(name, dir) {
   // Cookie parser
   app.locals.modules.cookieParser = "cookie-parser";
   app.locals.uses.push("cookieParser()");
-  pkg.dependencies["cookie-parser"] = "~1.4.5";
+  pkg.dependencies["cookie-parser"] = "~1.4.6";
 
   if (dir !== ".") {
     mkdir(dir, ".");
@@ -332,7 +332,7 @@ function createApplication(name, dir) {
       break;
     case "pug":
       app.locals.view = { engine: "pug" };
-      pkg.dependencies.pug = "3.0.0";
+      pkg.dependencies.pug = "3.0.2";
       break;
     case "twig":
       app.locals.view = { engine: "twig" };

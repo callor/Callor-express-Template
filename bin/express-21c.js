@@ -2,8 +2,8 @@
 
 /**
  * ES6+문법으로 프로젝트 생성하는 코드
+ *
  */
-
 var ejs = require("ejs");
 var fs = require("fs");
 var minimatch = require("minimatch");
@@ -48,43 +48,21 @@ before(program, "unknownOption", function () {
   }
 });
 
+// prettier-ignore
 program
-  .name("express-21c")
-  .version(VERSION, "    --version")
-  .usage("[options] [dir]")
-  .option(
-    "-e, --ejs",
-    "add ejs engine support",
-    renamedOption("--ejs", "--view=ejs")
-  )
-  .option(
-    "    --jade",
-    "add jade engine support",
-    renamedOption("--jade", "--view=jade")
-  )
-  .option(
-    "    --hbs",
-    "add handlebars engine support",
-    renamedOption("--hbs", "--view=hbs")
-  )
-  .option(
-    "-H, --hogan",
-    "add hogan.js engine support",
-    renamedOption("--hogan", "--view=hogan")
-  )
-  .option(
-    "-v, --view <engine>",
-    "add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to pug)"
-  )
-  .option("    --no-view", "use static html instead of view engine")
-  .option(
-    "-c, --css <engine>",
-    "add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)"
-  )
-  .option("    --git", "add .gitignore")
-  .option("-f, --force", "force on non-empty directory")
-  .parse(process.argv);
-
+.name('express')
+.version(VERSION, '    --version')
+.usage('[options] [dir]')
+.option('-e, --ejs', 'add ejs engine support', renamedOption('--ejs', '--view=ejs'))
+.option('    --pug', 'add pug engine support', renamedOption('--pug', '--view=pug'))
+.option('    --hbs', 'add handlebars engine support', renamedOption('--hbs', '--view=hbs'))
+.option('-H, --hogan', 'add hogan.js engine support', renamedOption('--hogan', '--view=hogan'))
+.option('-v, --view <engine>', 'add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)')
+.option('    --no-view', 'use static html instead of view engine')
+.option('-c, --css <engine>', 'add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)')
+.option('    --git', 'add .gitignore')
+.option('-f, --force', 'force on non-empty directory')
+.parse(process.argv)
 if (!exit.exited) {
   main();
 }
@@ -482,6 +460,7 @@ function main() {
   // App name
   var appName = createAppName(path.resolve(destinationPath)) || "hello-world";
 
+  console.log(program.view);
   // View engine
   if (program.view === true) {
     if (program.ejs) program.view = "ejs";

@@ -1,7 +1,7 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "keywords": [
@@ -23,7 +23,7 @@
   "homepage": "https://www.callor.com",
   "license": "(MIT OR Apache-2.0)",
   "dependencies": {
-    "commander": "^8.3.0",
+    "commander": "^2.15.1",
     "ejs": "^3.1.6",
     "minimatch": "^3.0.4",
     "mkdirp": "^1.0.4",

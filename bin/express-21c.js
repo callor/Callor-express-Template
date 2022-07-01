@@ -49,7 +49,7 @@ before(program, "unknownOption", function () {
 });
 
 program
-  .name("express")
+  .name("express-21c")
   .version(VERSION, "    --version")
   .usage("[options] [dir]")
   .option(
@@ -58,9 +58,9 @@ program
     renamedOption("--ejs", "--view=ejs")
   )
   .option(
-    "    --pug",
-    "add pug engine support",
-    renamedOption("--pug", "--view=pug")
+    "    --jade",
+    "add jade engine support",
+    renamedOption("--jade", "--view=jade")
   )
   .option(
     "    --hbs",

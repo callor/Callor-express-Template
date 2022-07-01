@@ -1,7 +1,7 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "1.7.7",
+  "version": "1.8.7",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "keywords": [

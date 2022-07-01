@@ -488,6 +488,7 @@ function main() {
     if (program.hbs) program.view = "hbs";
     if (program.hogan) program.view = "hjs";
     if (program.jade) program.view = "jade";
+    if (program.pug) program.view = "pug";
   }
 
   // Default view engine

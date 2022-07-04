@@ -146,7 +146,7 @@ function createApplication(name, dir) {
     version: "0.0.0",
     type: "module",
     scripts: {
-      start: "node ./bin/www",
+      start: "node ./bin/www.js",
     },
     dependencies: {
       debug: "~4.3.4",
@@ -339,7 +339,7 @@ function createApplication(name, dir) {
   write(path.join(dir, "app.js"), app.render());
   write(path.join(dir, "package.json"), JSON.stringify(pkg, null, 2) + "\n");
   mkdir(dir, "bin");
-  write(path.join(dir, "bin/www"), www.render(), MODE_0755);
+  write(path.join(dir, "bin/www.js"), www.render(), MODE_0755);
 
   var prompt = launchedFromCmd() ? ">" : "$";
 

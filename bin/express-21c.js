@@ -17,9 +17,12 @@ import util from "util";
 // const VERSION = packageJSON.version;
 // console.log(VERSION);
 
-fs.readFile("../package.json", "utf8", (error, jsonFile) => {
-  console.log(jsonFile);
-});
+const jsonFile = fs.readFileSync(
+  "./package.json",
+  "utf8",
+  (error, jsonFile) => {}
+);
+const VERSION = JSON.parse(jsonFile).version;
 
 const MODE_0666 = parseInt("0666", 8);
 const MODE_0755 = parseInt("0755", 8);
@@ -44,7 +47,7 @@ const args = parseArgs(process.argv.slice(2), {
     v: "view",
   },
   boolean: ["ejs", "force", "git", "hbs", "help", "hogan", "pug", "version"],
-  default: { css: true, view: true, pug: true },
+  default: { css: true, view: true, pug: true, version: VERSION },
   string: ["css", "view"],
   unknown: function (s) {
     if (s.charAt(0) === "-") {
@@ -52,7 +55,97 @@ const args = parseArgs(process.argv.slice(2), {
     }
   },
 });
-// console.table(args);
+
+args["!"] = unknown;
+
+const error = (message) => {
+  console.error();
+  message.split("\n").forEach(function (line) {
+    console.error("  error: %s", line);
+  });
+  console.error();
+};
+
+const main = (options, done) => {
+  // top-level argument direction
+  if (options["!"].length > 0) {
+    // usage();
+    error(`unknown option '${options["!"][0]}' `);
+    done(1);
+  } else if (args.help) {
+    // usage();
+    done(0);
+  } else if (args.version) {
+    console.log(args.version);
+    done(0);
+  } else if (options.css === "") {
+    // usage();
+    error(`option '-c, --css <engine>' argument missing`);
+    done(1);
+  } else if (options.view === "") {
+    // usage();
+    error(`option '-v, --view <engine>' argument missing`);
+    done(1);
+  } else {
+    // Path
+    var destinationPath = options._[0] || ".";
+
+    // App name
+    var appName = createAppName(path.resolve(destinationPath)) || "hello-world";
+
+    // View engine
+    if (options.view === true) {
+      if (options.ejs) {
+        options.view = "ejs";
+        warning(`option '--ejs' has been renamed to '--view=ejs'`);
+      }
+
+      if (options.hbs) {
+        options.view = "hbs";
+        warning("option `--hbs' has been renamed to `--view=hbs'");
+      }
+
+      if (options.hogan) {
+        options.view = "hjs";
+        warning("option `--hogan' has been renamed to `--view=hjs'");
+      }
+
+      if (options.pug) {
+        options.view = "pug";
+        warning("option `--pug' has been renamed to `--view=pug'");
+      }
+    }
+
+    // Default view engine
+    if (options.view === true) {
+      warning(
+        "the default view engine will not be jade in future releases\n" +
+          "use `--view=jade' or `--help' for additional options"
+      );
+      options.view = "jade";
+    }
+
+    //   // Generate application
+    //   emptyDirectory(destinationPath, function (empty) {
+    //     if (empty || options.force) {
+    //       createApplication(appName, destinationPath, options, done);
+    //     } else {
+    //       confirm("destination is not empty, continue? [y/N] ", function (ok) {
+    //         if (ok) {
+    //           process.stdin.destroy();
+    //           createApplication(appName, destinationPath, options, done);
+    //         } else {
+    //           console.error("aborting");
+    //           done(1);
+    //         }
+    //       });
+    //     }
+    //   });
+  }
+};
+
+const exit = (arg) => {};
+main(args, exit);
 
 // around(program, "optionMissingArgument", (fn, args) => {
 //   program.outputHelp();

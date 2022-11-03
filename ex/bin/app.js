@@ -5,21 +5,19 @@
 * @update : 2022-11-01
 * @see : nodejs + express 프로젝트에서 ES6+ 문법을 사용하기 위한 template
 */
-<%// 필수 항목 import %>
+
 // essential modules
 import express from 'express';
 import createError from 'http-errors';
 import path from 'path';
 
 // 3rd party lib modules  
-<% Object.keys(importModulesList).sort().forEach( (key) => { -%>
-import <%- key %> from '<%- importModulesList[key] %>';
-<% }); -%>
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
 // sample router modules
-<% Object.keys(routerModules).sort().forEach( (key) => { -%>
-import <%- key %> from '<%- routerModules[key] %>';
-<% }); -%>
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
 
 // create express framework
 const app = express();
@@ -27,26 +25,20 @@ const app = express();
 // Disable the fingerprinting of this web technology.
 app.disable("x-powered-by");
 
-<% if (view) { -%>
 // view engine setup
-<% if (view.render) { -%>
-app.engine('<%- view.engine %>', <%- view.render %>);
-<% } -%>
 app.set('views', path.join('views'));
-app.set('view engine', '<%- view.engine %>');
-<% } -%>
+app.set('view engine', 'false');
 
 // middleWare enable
-<% middleWareList.forEach((middle)=> { -%>
-app.use(<%- middle %>);
-<% }); -%>
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // router link enable
-<% routerMounts.forEach((router)=> { -%>
-app.use(<%= router.path %>, <%- router.module %>);
-<% }); -%>
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
-<% if (view) { -%>
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
@@ -63,5 +55,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-<% } -%>
 export default app;

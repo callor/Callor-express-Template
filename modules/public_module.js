@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import readline from "readline";
 import mkdirp from "mkdirp";
-
+import minimatch from "minimatch";
 // ejs file render
 import ejs from "ejs";
 // ESCAPE
@@ -10,9 +10,10 @@ import util from "util";
 
 const MODE_0666 = parseInt("0666", 8);
 const MODE_0755 = parseInt("0755", 8);
+const TEMPLATE_DIR = path.join("templates");
 
 // console confirm blocking input
-const confirm = async (msg, cb) => {
+const confirm = (msg, cb) => {
   const keyInput = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -24,11 +25,11 @@ const confirm = async (msg, cb) => {
 };
 
 const mkdir = (base, dir) => {
-  const loc = path.join(base, dir);
+  const localDir = path.join(base, dir);
 
   // Ansi Console Text
-  console.log("   \x1b[36mcreate\x1b[0m : " + loc + path.sep);
-  mkdirp.sync(loc, MODE_0755);
+  console.log(`   \x1b[36mcreate\x1b[0m : ${localDir}${path.sep}`);
+  mkdirp.sync(localDir, MODE_0755);
 };
 
 const loadTemplate = (tempName) => {
@@ -52,6 +53,19 @@ const loadTemplate = (tempName) => {
 const fileWrite = (file, str, mode) => {
   fs.writeFileSync(file, str, { mode: mode || MODE_0666 });
   console.log("   \x1b[36mcreate\x1b[0m : " + file);
+};
+
+const copyTemplate = (from, to) => {
+  fileWrite(to, fs.readFileSync(path.join(TEMPLATE_DIR, from), "utf-8"));
+};
+
+// Copy multiple files from template directory.
+const copyTemplateMulti = (fromDir, toDir, nameGlob) => {
+  fs.readdirSync(path.join(TEMPLATE_DIR, fromDir))
+    .filter(minimatch.filter(nameGlob, { matchBase: true }))
+    .forEach(function (name) {
+      copyTemplate(path.join(fromDir, name), path.join(toDir, name));
+    });
 };
 
 const finish = (dir, appName) => {
@@ -79,4 +93,12 @@ const finish = (dir, appName) => {
   }
 };
 
-export { confirm, mkdir, loadTemplate, fileWrite, finish };
+export {
+  confirm,
+  mkdir,
+  loadTemplate,
+  fileWrite,
+  copyTemplate,
+  copyTemplateMulti,
+  finish,
+};

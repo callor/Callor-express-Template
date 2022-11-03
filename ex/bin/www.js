@@ -6,7 +6,7 @@ import http from 'http';
 import app from '../app.js';
 import createDebug from 'debug';
 
-const debug = ('<%- appName %>:server');
+const debug = ('ex:server');
 const port = normalizePort(process.env.PORT || "3000");
 
 /**

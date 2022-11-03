@@ -18,6 +18,8 @@ import {
   fileWrite,
   finish,
   loadTemplate,
+  copyTemplate,
+  copyTemplateMulti,
 } from "../modules/public_module.js";
 
 // import packageJSON from "../package.json";
@@ -75,6 +77,8 @@ const args = parseArgs(process.argv.slice(2), {
   },
 });
 
+console.log("View", args.view, args.ejs, args.pug);
+
 args["!"] = unknown;
 const consoleMessage = (type, message) => {
   console.error();
@@ -108,23 +112,86 @@ const createApplication = (appArgs) => {
   // project directory create
   mkdir(dir, "bin");
   mkdir(dir, "routes");
-  mkdir(dir, "modules");
+  mkdir(dir, "views");
   mkdir(dir, "public");
-  mkdir(dir, "public/javascripts");
+  mkdir(dir, "modules");
+
+  mkdir(dir, "public/js");
   mkdir(dir, "public/images");
-  mkdir(dir, "public/stylesheets");
+  mkdir(dir, "public/css");
+
+  // Package
+  const packages = {
+    name: appName,
+    version: "0.0.0",
+    private: true,
+    scripts: {
+      start: "node ./bin/www",
+    },
+    dependencies: {
+      debug: "~2.6.9",
+      express: "~4.17.1",
+    },
+  };
 
   // app.js.ejs file open
   const app = loadTemplate("js/app.js");
+  const www = loadTemplate("js/www.js");
 
   // app.js.ejs file Rendering Values
-  app.locals.localModules = {};
-  app.locals.modules = {};
-  app.locals.mounts = [];
-  app.locals.uses = [];
 
-  app.locals.view = { engine: "ejs" };
-  console.log(app.render());
+  // middleWare import and setting
+  app.locals.importModulesList = {};
+  app.locals.middleWareList = [];
+
+  // Request logger
+  app.locals.importModulesList.logger = "morgan";
+  app.locals.middleWareList.push("logger('dev')");
+  packages.dependencies.morgan = "~1.10.0";
+
+  // Body parsers
+  app.locals.middleWareList.push("express.json()");
+  app.locals.middleWareList.push("express.urlencoded({ extended: false })");
+
+  // Cookie parser
+  app.locals.importModulesList.cookieParser = "cookie-parser";
+  app.locals.middleWareList.push("cookieParser()");
+  packages.dependencies["cookie-parser"] = "~1.4.5";
+
+  // sample Router Setting
+  app.locals.routerModules = {}; // routes import list
+  app.locals.routerMounts = []; // router use setting list
+
+  // Index router mount
+  app.locals.routerModules.indexRouter = "./routes/index";
+  app.locals.routerMounts.push({ path: "/", module: "indexRouter" });
+
+  // User router mount
+  app.locals.routerModules.usersRouter = "./routes/users";
+  app.locals.routerMounts.push({ path: "/users", module: "usersRouter" });
+
+  app.locals.view = { engine: options.view };
+
+  www.locals.appName = appName;
+
+  // www.js, app.js write
+  fileWrite(path.join(dir, "bin/app.js"), app.render());
+  fileWrite(path.join(dir, "bin/www.js"), www.render(), MODE_0755);
+
+  // css templage copy
+  if (options.css === true)
+    copyTemplateMulti("css", dir + "/public/css", `*.css`);
+  else if (typeof options.css === "string")
+    copyTemplateMulti("css", dir + "/public/css", `*.${options.css}`);
+
+  // router copy
+  copyTemplateMulti("js/routes", dir + "/routes", "*.js");
+
+  // view copy
+  console.log("View", options.view);
+  if (options.view)
+    copyTemplateMulti("views", dir + "/views", `*.${options.view}`);
+  else copyTemplate("views/index.html", path.join(dir, "public/index.html"));
 
   finish(dir, appName);
 };
@@ -157,7 +224,6 @@ const main = async (options, done) => {
   } else {
     // Path
     const destinationPath = options._[0] || ".";
-    console.log("else", destinationPath);
 
     // App name
     const appName =
@@ -171,16 +237,18 @@ const main = async (options, done) => {
       options.view = options.hjs && "hjs";
       options.view = options.hbs && "hbs";
       options.view = options.hogan && "hogan";
-
-      // 설정이 없으면 pug 를 기본 view 로 설정
-      options.view = options.view || "pug";
+    } else {
+      options.view = "pug";
     }
     if (options.view === true) {
+      // 설정이 없으면 pug 를 기본 view 로 설정
+      options.view = "pug";
       consoleMessage(
         "warning",
         `option '--${options.view}' has been renamed to '--view=${options.view}'`
       );
     }
+    console.log(options.view);
 
     // 이미 있는 디렉토리인지 검사
     const dirExists = isEmptyDir(destinationPath);

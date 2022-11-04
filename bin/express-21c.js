@@ -29,12 +29,11 @@ import {
 // console.log(VERSION);
 
 const jsonFile = fs.readFileSync(
-  path.join("../package.json"),
+  path.join("..", "package.json"),
   "utf8",
   (error, jsonFile) => {}
 );
 const VERSION = JSON.parse(jsonFile).version;
-console.log("VERSION", VERSION);
 const MODE_0755 = parseInt("0755", 8);
 
 // const _exit = process.exit;

@@ -29,16 +29,13 @@ import {
 // console.log(VERSION);
 
 const jsonFile = fs.readFileSync(
-  "./package.json",
+  path.join("package.json"),
   "utf8",
   (error, jsonFile) => {}
 );
 const VERSION = JSON.parse(jsonFile).version;
 console.log("VERSION", VERSION);
-
-const MODE_0666 = parseInt("0666", 8);
 const MODE_0755 = parseInt("0755", 8);
-const TEMPLATE_DIR = path.join("..", "templates-module");
 
 // const _exit = process.exit;
 
@@ -158,6 +155,8 @@ const createApplication = (appArgs) => {
   packages.dependencies[options.view] = viewOptions[options.view];
 
   www.locals.appName = appName;
+
+  packages.dependencies = sortedObject(packages.dependencies);
 
   // www.js, app.js write
   fileWrite(path.join(dir, "bin/app.js"), app.render());

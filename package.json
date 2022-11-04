@@ -34,7 +34,7 @@
   "main": "bin/express-21c.js",
   "preferGlobal": true,
   "bin": {
-    "express-21c": "./bin/express-21c.js"
+    "express": "./bin/express-21c.js"
   },
   "devDependencies": {
     "eslint": "^8.26.0",

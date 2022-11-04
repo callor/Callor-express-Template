@@ -29,7 +29,7 @@ import {
 // console.log(VERSION);
 
 const jsonFile = fs.readFileSync(
-  path.join("package.json"),
+  path.join("../package.json"),
   "utf8",
   (error, jsonFile) => {}
 );

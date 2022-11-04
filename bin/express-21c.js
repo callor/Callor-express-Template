@@ -15,6 +15,7 @@ import {
 import sortedObject from "sorted-object";
 import helpMessage from "../modules/help.js";
 import {
+  VERSION,
   confirm,
   mkdir,
   fileWrite,
@@ -24,13 +25,6 @@ import {
   copyTemplateMulti,
 } from "../modules/public_module.js";
 
-const anotherFile = new URL("../package.json", import.meta.url);
-const data = fs.readFileSync(anotherFile, "utf-8");
-console.log(data);
-// const packageContents = fs.readFileSync(packageFile, "utf-8");
-
-// const VERSION = JSON.parse(packageContents).version;
-// console.log("VERSION", VERSION);
 const MODE_0755 = parseInt("0755", 8);
 
 // CLI
@@ -82,7 +76,6 @@ const createApplication = (appArgs) => {
   mkdir(dir, "routes");
   mkdir(dir, "views");
   mkdir(dir, "public");
-  mkdir(dir, "modules");
 
   mkdir(dir, "public/js");
   mkdir(dir, "public/images");

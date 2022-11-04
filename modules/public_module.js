@@ -17,7 +17,6 @@ const MODE_0666 = parseInt("0666", 8);
 const MODE_0755 = parseInt("0755", 8);
 const tempURL = new URL("../templates", import.meta.url); // path.join("templates");
 const TEMPLATE_DIR = tempURL.pathname.substring(1);
-console.log("TEMP", TEMPLATE_DIR);
 
 // console confirm blocking input
 const confirm = (msg, cb) => {
@@ -41,7 +40,7 @@ const mkdir = (base, dir) => {
 
 // fileRead
 const loadTemplate = (tempName) => {
-  const tempFile = path.join("./", "templates", tempName + ".ejs");
+  const tempFile = path.join(TEMPLATE_DIR, tempName + ".ejs");
   console.log(tempFile);
   const contents = fs.readFileSync(tempFile, "utf-8");
   const locals = {}; // Object.create(null);
@@ -68,7 +67,6 @@ const copyTemplate = (from, to) => {
 
 // Copy multiple files from template directory.
 const copyTemplateMulti = (fromDir, toDir, nameGlob) => {
-  console.log(path.join(TEMPLATE_DIR, fromDir));
   fs.readdirSync(path.join(TEMPLATE_DIR, fromDir))
     .filter(minimatch.filter(nameGlob, { matchBase: true }))
     .forEach(function (name) {

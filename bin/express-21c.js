@@ -24,14 +24,12 @@ import {
   copyTemplateMulti,
 } from "../modules/public_module.js";
 
-const VERSION = "2022 v2";
+const packageFile = path.resolve("./", "package.json");
+const packageContents = fs.readFileSync(packageFile, "utf-8");
+
+const VERSION = JSON.parse(packageContents).version;
+console.log("VERSION", VERSION);
 const MODE_0755 = parseInt("0755", 8);
-
-// const _exit = process.exit;
-
-// Re-assign process.exit because of commander
-// TODO: Switch to a different command framework
-// process.exit = exit;
 
 // CLI
 

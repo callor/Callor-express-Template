@@ -34,7 +34,7 @@ const mkdir = (base, dir) => {
 
 // fileRead
 const loadTemplate = (tempName) => {
-  const tempFile = path.join("../", "templates", tempName + ".ejs");
+  const tempFile = path.resolve("./", "templates", tempName + ".ejs");
   console.log(tempFile);
   const contents = fs.readFileSync(tempFile, "utf-8");
   const locals = {}; // Object.create(null);

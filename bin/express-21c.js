@@ -6,7 +6,7 @@
 import fs from "fs";
 import parseArgs from "minimist";
 import path from "path";
-import packageJson from "/package.json";
+import packageJson from "../package.json";
 import {
   defaultOptions,
   cssOptions,

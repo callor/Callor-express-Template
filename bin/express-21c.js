@@ -24,11 +24,13 @@ import {
   copyTemplateMulti,
 } from "../modules/public_module.js";
 
-const packageFile = path.resolve("./", "package.json");
-const packageContents = fs.readFileSync(packageFile, "utf-8");
+const anotherFile = new URL("../package.json", import.meta.url);
+const data = fs.readFileSync(anotherFile, "utf-8");
+console.log(data);
+// const packageContents = fs.readFileSync(packageFile, "utf-8");
 
-const VERSION = JSON.parse(packageContents).version;
-console.log("VERSION", VERSION);
+// const VERSION = JSON.parse(packageContents).version;
+// console.log("VERSION", VERSION);
 const MODE_0755 = parseInt("0755", 8);
 
 // CLI

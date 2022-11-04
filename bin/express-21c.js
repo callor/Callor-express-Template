@@ -6,9 +6,6 @@
 import fs from "fs";
 import parseArgs from "minimist";
 import path from "path";
-const jsonModule = await import("../package.json", (result) => {
-  console.log(result);
-});
 import {
   defaultOptions,
   cssOptions,
@@ -27,16 +24,12 @@ import {
   copyTemplateMulti,
 } from "../modules/public_module.js";
 
-// import packageJSON from "../package.json";
-// const VERSION = packageJSON.version;
-// console.log(VERSION);
-
-// const jsonFile = fs.readFileSync(
-//   path.join(process.cwd(), "package.json"),
-//   "utf8",
-//   (error, jsonFile) => {}
-// );
-const VERSION = process.env.APP_VERSION;
+const jsonFile = fs.readFileSync(
+  "../package.json",
+  "utf8",
+  (error, jsonFile) => {}
+);
+const VERSION = JSON.parse(jsonFile).version;
 const MODE_0755 = parseInt("0755", 8);
 
 // const _exit = process.exit;

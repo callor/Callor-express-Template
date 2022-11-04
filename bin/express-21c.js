@@ -24,12 +24,7 @@ import {
   copyTemplateMulti,
 } from "../modules/public_module.js";
 
-const jsonFile = fs.readFileSync(
-  "./package.json",
-  "utf8",
-  (error, jsonFile) => {}
-);
-const VERSION = JSON.parse(jsonFile).version;
+const VERSION = "2022 v2";
 const MODE_0755 = parseInt("0755", 8);
 
 // const _exit = process.exit;

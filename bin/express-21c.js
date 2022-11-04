@@ -155,6 +155,9 @@ const createApplication = (appArgs) => {
     copyTemplateMulti("views", dir + "/views", `*.${options.view}`);
   else copyTemplate("views/index.html", path.join(dir, "public/index.html"));
 
+  copyTemplateMulti("javascript", dir + "/public/js", "*.js");
+  copyTemplateMulti("images", dir + "/public/images", "*.*");
+
   // css templage copy
   if (options.css === true)
     copyTemplateMulti("css", dir + "/public/css", `*.css`);

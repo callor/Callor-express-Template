@@ -6,7 +6,9 @@
 import fs from "fs";
 import parseArgs from "minimist";
 import path from "path";
-import packageJson from "../package.json";
+const jsonModule = await import("../package.json", (result) => {
+  console.log(result);
+});
 import {
   defaultOptions,
   cssOptions,
@@ -34,7 +36,7 @@ import {
 //   "utf8",
 //   (error, jsonFile) => {}
 // );
-const VERSION = JSON.parse(packageJson).version;
+const VERSION = process.env.APP_VERSION;
 const MODE_0755 = parseInt("0755", 8);
 
 // const _exit = process.exit;

@@ -24,6 +24,10 @@ express my_project --view=pug && cd my_project
   // Disable the fingerprinting of this web technology. 경고 방지(avoid warning)  
   app.disable("x-powered-by");
 
+### 2022. 11. 04
+
+- Source Code refactoring
+
 ## 참조 원본출처 : Reference original source
 
 - https://github.com/expressjs/generator

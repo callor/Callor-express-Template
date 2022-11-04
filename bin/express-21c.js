@@ -3,7 +3,6 @@
  * ES6+ module grammer create code
  * author callor@callor.com
  */
-import ejs from "ejs";
 import fs from "fs";
 import parseArgs from "minimist";
 import path from "path";
@@ -14,7 +13,6 @@ import {
 } from "../config/package_options.js";
 
 import sortedObject from "sorted-object";
-
 import helpMessage from "../modules/help.js";
 import {
   confirm,

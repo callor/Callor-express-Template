@@ -1,7 +1,7 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "2.0.0",
+  "version": "2.0.7",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "type": "module",
@@ -19,16 +19,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/callor/Node_Express_Ex6_Template.git"
+    "url": "https://github.com/callor/NodeJS_ExpressES6.git"
   },
   "homepage": "https://www.callor.com",
   "license": "(MIT OR Apache-2.0)",
   "dependencies": {
+    "commander": "^9.4.1",
     "ejs": "^3.1.8",
     "minimatch": "^5.1.0",
-    "minimist": "^1.2.7",
+    "minimist": "*",
     "mkdirp": "^1.0.4",
-    "path": "^0.12.7",
+    "path": "*",
     "sorted-object": "^2.0.1"
   },
   "main": "bin/express-21c.js",

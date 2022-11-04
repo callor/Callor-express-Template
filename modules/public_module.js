@@ -32,6 +32,7 @@ const mkdir = (base, dir) => {
   mkdirp.sync(localDir, MODE_0755);
 };
 
+// fileRead
 const loadTemplate = (tempName) => {
   const contents = fs.readFileSync(
     path.join(".", "templates", tempName + ".ejs"),

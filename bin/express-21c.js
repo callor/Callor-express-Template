@@ -25,7 +25,7 @@ import {
 } from "../modules/public_module.js";
 
 const jsonFile = fs.readFileSync(
-  "../package.json",
+  "./package.json",
   "utf8",
   (error, jsonFile) => {}
 );

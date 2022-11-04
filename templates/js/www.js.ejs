@@ -1,19 +1,9 @@
-#!/usr/bin/env node
 /**
  * http Server Setting
  */
 import http from 'http';
-import app from '../app.js';
+import app from './app.js';
 import createDebug from 'debug';
-
-const debug = ('<%- appName %>:server');
-const port = normalizePort(process.env.PORT || "3000");
-
-/**
- * Create HTTP server.
- * http and app(express framework) integration
- */
-const server = http.createServer(app);
 
 // port number check
 const normalizePort = (val) => {
@@ -31,8 +21,18 @@ const normalizePort = (val) => {
   return false;
 };
 
+
+const debug = createDebug('<%- appName %>:server');
+const port = normalizePort(process.env.PORT || "3000");
+
+/**
+ * Create HTTP server.
+ * http and app(express framework) integration
+ */
+const server = http.createServer(app);
+
+
 server.listen(port);
-server.on("error", onError);
 
 // Event listener for HTTP server "error" event.
 server.on("error", (error) => {

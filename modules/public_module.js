@@ -34,7 +34,7 @@ const mkdir = (base, dir) => {
 
 const loadTemplate = (tempName) => {
   const contents = fs.readFileSync(
-    path.join("templates", tempName + ".ejs"),
+    path.join("./templates", tempName + ".ejs"),
     "utf-8"
   );
   const locals = {}; // Object.create(null);

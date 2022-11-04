@@ -1,7 +1,7 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "2.0.20",
+  "version": "2.0.21",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "type": "module",
@@ -35,7 +35,7 @@
   "main": "bin/express-21c.js",
   "preferGlobal": true,
   "bin": {
-    "express": "APP_VERSION=$npm_package_version && ./bin/express-21c.js"
+    "express": "./bin/express-21c.js"
   },
   "devDependencies": {
     "eslint": "^8.26.0",

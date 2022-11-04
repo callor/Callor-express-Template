@@ -125,11 +125,11 @@ const createApplication = (appArgs) => {
   app.locals.routerMounts = []; // router use setting list
 
   // Index router mount
-  app.locals.routerModules.indexRouter = "./routes/index.js";
+  app.locals.routerModules.indexRouter = "../routes/index.js";
   app.locals.routerMounts.push({ path: "/", module: "indexRouter" });
 
   // User router mount
-  app.locals.routerModules.usersRouter = "./routes/users.js";
+  app.locals.routerModules.usersRouter = "../routes/users.js";
   app.locals.routerMounts.push({ path: "/users", module: "usersRouter" });
 
   app.locals.view = { engine: options.view };

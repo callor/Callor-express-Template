@@ -5,9 +5,13 @@
  */
 import ejs from "ejs";
 import fs from "fs";
-import minimatch from "minimatch";
 import parseArgs from "minimist";
 import path from "path";
+import {
+  defaultOptions,
+  cssOptions,
+  viewOptions,
+} from "../config/package_options.js";
 
 import sortedObject from "sorted-object";
 
@@ -48,26 +52,8 @@ const TEMPLATE_DIR = path.join("..", "templates-module");
 
 const unknown = [];
 const args = parseArgs(process.argv.slice(2), {
-  alias: {
-    c: "css",
-    e: "ejs",
-    p: "pug",
-    H: "html",
-    f: "force",
-    h: "help",
-    v: "view",
-  },
-  boolean: [
-    "ejs",
-    "force",
-    "git",
-    "hbs",
-    "help",
-    "hogan",
-    "pug",
-    "html",
-    "version",
-  ],
+  alias: { c: "css", e: "ejs", p: "pug", f: "force", h: "help", v: "view" },
+  boolean: ["ejs", "pug", "hbs", "hogan", "force", "git", "help", "version"],
   default: { css: true, view: true },
   string: ["css", "view"],
   unknown: function (s) {
@@ -104,7 +90,6 @@ const createAppName = (pathName) => {
 };
 const createApplication = (appArgs) => {
   const { appName, dir, options, done } = appArgs;
-  console.log("dir", dir);
   if (dir !== ".") {
     mkdir(dir, ".");
   }
@@ -125,12 +110,13 @@ const createApplication = (appArgs) => {
     name: appName,
     version: "0.0.0",
     private: true,
+    type: "module",
     scripts: {
       start: "node ./bin/www",
     },
     dependencies: {
-      debug: "~2.6.9",
-      express: "~4.17.1",
+      debug: defaultOptions.debug,
+      express: defaultOptions.express,
     },
   };
 
@@ -147,7 +133,7 @@ const createApplication = (appArgs) => {
   // Request logger
   app.locals.importModulesList.logger = "morgan";
   app.locals.middleWareList.push("logger('dev')");
-  packages.dependencies.morgan = "~1.10.0";
+  packages.dependencies.morgan = defaultOptions.morgan;
 
   // Body parsers
   app.locals.middleWareList.push("express.json()");
@@ -156,7 +142,7 @@ const createApplication = (appArgs) => {
   // Cookie parser
   app.locals.importModulesList.cookieParser = "cookie-parser";
   app.locals.middleWareList.push("cookieParser()");
-  packages.dependencies["cookie-parser"] = "~1.4.5";
+  packages.dependencies["cookie-parser"] = defaultOptions.cookieParser;
 
   // sample Router Setting
   app.locals.routerModules = {}; // routes import list
@@ -171,12 +157,25 @@ const createApplication = (appArgs) => {
   app.locals.routerMounts.push({ path: "/users", module: "usersRouter" });
 
   app.locals.view = { engine: options.view };
+  packages.dependencies[options.view] = viewOptions[options.view];
 
   www.locals.appName = appName;
 
   // www.js, app.js write
   fileWrite(path.join(dir, "bin/app.js"), app.render());
   fileWrite(path.join(dir, "bin/www.js"), www.render(), MODE_0755);
+  fileWrite(
+    path.join(dir, "package.json"),
+    JSON.stringify(packages, null, 2) + "\n"
+  );
+
+  // router copy
+  copyTemplateMulti("js/routes", dir + "/routes", "*.js");
+
+  // view copy
+  if (options.view)
+    copyTemplateMulti("views", dir + "/views", `*.${options.view}`);
+  else copyTemplate("views/index.html", path.join(dir, "public/index.html"));
 
   // css templage copy
   if (options.css === true)
@@ -184,14 +183,36 @@ const createApplication = (appArgs) => {
   else if (typeof options.css === "string")
     copyTemplateMulti("css", dir + "/public/css", `*.${options.css}`);
 
-  // router copy
-  copyTemplateMulti("js/routes", dir + "/routes", "*.js");
-
-  // view copy
-  console.log("View", options.view);
-  if (options.view)
-    copyTemplateMulti("views", dir + "/views", `*.${options.view}`);
-  else copyTemplate("views/index.html", path.join(dir, "public/index.html"));
+  // CSS Engine support
+  switch (options.css) {
+    case "compass":
+      app.locals.importModulesList.compass = "node-compass";
+      app.locals.middleWareList.push("compass({ mode: 'expanded' })");
+      packages.dependencies["node-compass"] = cssOptions.nodeCompass;
+      break;
+    case "less":
+      app.locals.importModulesList.lessMiddleware = "less-middleware";
+      app.locals.middleWareList.push(
+        "lessMiddleware(path.join(__dirname, 'public'))"
+      );
+      packages.dependencies["less-middleware"] = cssOptions.lessMiddleware;
+      break;
+    case "sass":
+      app.locals.importModulesList.sassMiddleware = "node-sass-middleware";
+      app.locals.middleWareList.push(
+        "sassMiddleware({\n  src: path.join(__dirname, 'public'),\n  dest: path.join(__dirname, 'public'),\n  indentedSyntax: true, // true = .sass and false = .scss\n  sourceMap: true\n})"
+      );
+      packages.dependencies["node-sass-middleware"] =
+        cssOptions.nodeSassMmiddleware;
+      break;
+    case "stylus":
+      app.locals.importModulesList.stylus = "stylus";
+      app.locals.middleWareList.push(
+        "stylus.middleware(path.join(__dirname, 'public'))"
+      );
+      packages.dependencies.stylus = cssOptions.stylus;
+      break;
+  }
 
   finish(dir, appName);
 };
@@ -229,26 +250,26 @@ const main = async (options, done) => {
     const appName =
       createAppName(path.resolve(destinationPath)) || "hello-world";
 
-    // --ejs, --pug, --html, --hbs or --pug option
+    // --ejs, --pug, --hjs or--hbs option
     if (options.view === true) {
       options.view = options.ejs && "ejs";
-      options.view = options.pug && "pug";
-      options.view = options.html && "html";
-      options.view = options.hjs && "hjs";
-      options.view = options.hbs && "hbs";
-      options.view = options.hogan && "hogan";
-    } else {
-      options.view = "pug";
+      options.view = options.view || (options.pug && "pug");
+      options.view = options.view || (options.hjs && "hjs");
+      options.view = options.view || (options.hbs && "hbs");
+      options.view = options.view || (options.hogan && "hogan");
+
+      // 선택된 view 가 없으면 options.view 가 false 가 되므로
+      // 기본값 설정을 위하여 true 로 다시 복귀한다
+      options.view = options.view || true;
     }
+    // 설정이 없으면 pug 를 기본 view 로 설정
     if (options.view === true) {
-      // 설정이 없으면 pug 를 기본 view 로 설정
       options.view = "pug";
       consoleMessage(
         "warning",
         `option '--${options.view}' has been renamed to '--view=${options.view}'`
       );
     }
-    console.log(options.view);
 
     // 이미 있는 디렉토리인지 검사
     const dirExists = isEmptyDir(destinationPath);

@@ -29,7 +29,7 @@ import {
 // console.log(VERSION);
 
 const jsonFile = fs.readFileSync(
-  path.join(".", "package.json"),
+  path.join(process.cwd(), "package.json"),
   "utf8",
   (error, jsonFile) => {}
 );
@@ -56,8 +56,6 @@ const args = parseArgs(process.argv.slice(2), {
     }
   },
 });
-
-console.log("View", args.view, args.ejs, args.pug);
 
 args["!"] = unknown;
 const consoleMessage = (type, message) => {

@@ -1,7 +1,7 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "2.0.23",
+  "version": "2.0.24",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "type": "module",
@@ -26,6 +26,7 @@
   "dependencies": {
     "commander": "^9.4.1",
     "ejs": "^3.1.8",
+    "express-21c": "^2.0.22",
     "minimatch": "^5.1.0",
     "minimist": "*",
     "mkdirp": "^1.0.4",

@@ -23,6 +23,8 @@
   // Disable the fingerprinting of this web technology. 경고 방지(avoid warning)  
    `app.disable("x-powered-by");`
 
+### :hours: since : 2020-12-10
+
 ### 2022. 11. 04
 
 - Source Code refactoring

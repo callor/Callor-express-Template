@@ -25,11 +25,11 @@
 
 ### :carousel_horse: since : 2020-12-10
 
-### 2022. 11. 04
+### :carousel_horse: Upgrade V2.0.1( 2022. 11. 04 )
 
 - Source Code refactoring
 
-### 2022. 11. 11
+### :carousel_horse: Upgrade V2.1.0( 2022. 11. 11 )
 
 - MySQL and Sequelize init sample
 - `express project --pug --sequelize`

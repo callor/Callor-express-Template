@@ -30,7 +30,7 @@ import <%- key %> from '<%- routerModules[key] %>';
 // create express framework
 const app = express();
 
-<% if(sequelizeModuesList.length > 0) { -%>
+<% if(sequelizeModuesList.DB) { -%>
 DB.sequelize.sync({ force: true }).then((dbConn) => {
    console.log(dbConn.options.host,dbConn.config.database, "DB Connection OK");
 });

@@ -2,7 +2,7 @@ const defaultDependency = {
   debug: "~4.3.4",
   express: "~4.18.2",
   "cookie-parser": "~1.4.6",
-  // "http-errors": "~2.0.0",
+  "http-errors": "~2.0.0",
   morgan: "~1.10.0",
 };
 

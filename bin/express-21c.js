@@ -98,7 +98,7 @@ const createApplication = (appArgs) => {
     private: true,
     type: "module",
     scripts: {
-      start: "node ./bin/www",
+      start: "node ./bin/www.js",
     },
     dependencies: {},
   };
@@ -149,9 +149,7 @@ const createApplication = (appArgs) => {
 
   // mysql sequelize enable
   if (options.sequelize) {
-    // app.locals.importModulesList.compass = "mysql2";
-
-    app.locals.sequelizeModuesList.DB = `"../models/index.js"`;
+    app.locals.sequelizeModuesList.DB = "../models/index.js";
     packages.dependencies["sequelize"] = sequelizeOption.sequelize;
     packages.dependencies["mysql2"] = sequelizeOption.mysql2;
 

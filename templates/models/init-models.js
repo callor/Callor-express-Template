@@ -1,9 +1,10 @@
-import _tbl_student from "./sample_model.js";
-function initModels(sequelize) {
-  var tbl_student = _tbl_student(sequelize);
+import _tbl_sample from "./sample_model.js";
+const initModels = (sequelize) => {
+  const tbl_sample = _tbl_sample(sequelize);
 
   return {
-    tbl_student,
+    tbl_sample,
   };
-}
+};
+
 export default initModels;

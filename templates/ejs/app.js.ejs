@@ -32,7 +32,7 @@ const app = express();
 
 <% if(sequelizeModuesList.DB) { -%>
 DB.sequelize.sync({ force: true }).then((dbConn) => {
-   console.log(dbConn.options.host,dbConn.config.database, "DB Connection OK");
+  console.log(dbConn.options.host, dbConn.config.database, "DB Connection OK");
 });
 <% }-%>
 

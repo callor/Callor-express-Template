@@ -60,13 +60,13 @@
     "package.json",
     "bin/",
     "templates/",
-    "templates-module/",
     "config/",
     "modules/"
   ],
   "scripts": {
     "lint": "eslint .",
     "test": "mocha --reporter spec --bail --check-leaks test/",
-    "test-ci": "mocha --reporter spec --check-leaks test/"
+    "test-ci": "mocha --reporter spec --check-leaks test/",
+    "exec": "node ./bin/express-21c.js test --pug --sequelize"
   }
 }

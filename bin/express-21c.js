@@ -196,24 +196,20 @@ const createApplication = (appArgs) => {
       break;
     case "less":
       app.locals.importModulesList.lessMiddleware = "less-middleware";
-      app.locals.middleWareList.push(
-        "lessMiddleware(path.join(__dirname, 'public'))"
-      );
+      app.locals.middleWareList.push("lessMiddleware(path.join('public'))");
       packages.dependencies["less-middleware"] = cssOptions.lessMiddleware;
       break;
     case "sass":
       app.locals.importModulesList.sassMiddleware = "node-sass-middleware";
       app.locals.middleWareList.push(
-        "sassMiddleware({\n  src: path.join(__dirname, 'public'),\n  dest: path.join(__dirname, 'public'),\n  indentedSyntax: true, // true = .sass and false = .scss\n  sourceMap: true\n})"
+        "sassMiddleware({\n  src: path.join('public'),\n  dest: path.join('public'),\n  indentedSyntax: true, // true = .sass and false = .scss\n  sourceMap: true\n})"
       );
       packages.dependencies["node-sass-middleware"] =
         cssOptions.nodeSassMmiddleware;
       break;
     case "stylus":
       app.locals.importModulesList.stylus = "stylus";
-      app.locals.middleWareList.push(
-        "stylus.middleware(path.join(__dirname, 'public'))"
-      );
+      app.locals.middleWareList.push("stylus.middleware(path.join('public'))");
       packages.dependencies.stylus = cssOptions.stylus;
       break;
   }

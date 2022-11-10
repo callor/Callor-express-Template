@@ -110,7 +110,7 @@ const createApplication = (appArgs) => {
   // middleWare import and setting
   app.locals.importModulesList = {};
   app.locals.middleWareList = [];
-  app.locals.sequelizeModuesList = [];
+  app.locals.sequelizeModuesList = {};
 
   // Request logger
   app.locals.importModulesList.logger = "morgan";

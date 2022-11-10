@@ -34,6 +34,6 @@
 - MySQL and Sequelize init sample
 - `express project --pug --sequelize`
 
-## 참조 원본출처 : Reference original source
+## 참조 출처 : Reference source
 
 - https://github.com/expressjs/generator

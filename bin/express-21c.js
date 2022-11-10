@@ -218,7 +218,7 @@ const createApplication = (appArgs) => {
       break;
   }
 
-  finish(dir, appName);
+  finish(dir, appName, app);
 };
 
 const isEmptyDir = (dir, cb) => {

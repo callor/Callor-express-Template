@@ -74,7 +74,7 @@ const copyTemplateMulti = (fromDir, toDir, nameGlob) => {
     });
 };
 
-const finish = (dir, appName) => {
+const finish = (dir, appName, app = null) => {
   const launchedCmd =
     process.platform === "win32" && process.env._ === undefined;
 
@@ -84,6 +84,12 @@ const finish = (dir, appName) => {
     console.log();
     console.log("   change directory:");
     console.log("     %s cd %s", prompt, dir);
+  }
+
+  if (app?.locals.sequelizeModuesList.DB) {
+    console.log();
+    console.log("   set the database config:");
+    console.log("     %s edit ./%s/config/db_config.js", prompt, dir);
   }
 
   console.log();

@@ -16,6 +16,11 @@ import path from 'path';
 import <%- key %> from '<%- importModulesList[key] %>';
 <% }); -%>
 
+// MySQL Sequelize
+<% Object.keys(sequelizeModuesList).sort().forEach( (key) => { -%>
+import <%- key %> from '<%- sequelizeModuesList[key] %>';
+<% }); -%>
+
 // sample router modules
 <% Object.keys(routerModules).sort().forEach( (key) => { -%>
 import <%- key %> from '<%- routerModules[key] %>';
@@ -35,6 +40,7 @@ app.engine('<%- view.engine %>', <%- view.render %>);
 app.set('views', path.join('views'));
 app.set('view engine', '<%- view.engine %>');
 <% } -%>
+
 
 // middleWare enable
 <% middleWareList.forEach((middle)=> { -%>

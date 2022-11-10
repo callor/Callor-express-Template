@@ -7,7 +7,8 @@ import fs from "fs";
 import parseArgs from "minimist";
 import path from "path";
 import {
-  defaultOptions,
+  defaultDependency,
+  sequelizeOption,
   cssOptions,
   viewOptions,
 } from "../config/package_options.js";
@@ -28,11 +29,20 @@ import {
 const MODE_0755 = parseInt("0755", 8);
 
 // CLI
-
 const unknown = [];
 const args = parseArgs(process.argv.slice(2), {
   alias: { c: "css", e: "ejs", p: "pug", f: "force", h: "help", v: "view" },
-  boolean: ["ejs", "pug", "hbs", "hogan", "force", "git", "help", "version"],
+  boolean: [
+    "ejs",
+    "pug",
+    "hbs",
+    "hogan",
+    "force",
+    "sequelize",
+    "git",
+    "help",
+    "version",
+  ],
   default: { css: true, view: true },
   string: ["css", "view"],
   unknown: function (s) {
@@ -50,13 +60,13 @@ const consoleMessage = (type, message) => {
   });
   console.error();
 };
-const warning = (message) => {
-  console.error();
-  message.split("\n").forEach(function (line) {
-    console.error("  warning: %s", line);
-  });
-  console.error();
-};
+// const warning = (message) => {
+//   console.error();
+//   message.split("\n").forEach(function (line) {
+//     console.error("  warning: %s", line);
+//   });
+//   console.error();
+// };
 
 const createAppName = (pathName) => {
   return path
@@ -90,26 +100,21 @@ const createApplication = (appArgs) => {
     scripts: {
       start: "node ./bin/www",
     },
-    dependencies: {
-      debug: defaultOptions.debug,
-      express: defaultOptions.express,
-    },
+    dependencies: {},
   };
 
   // app.js.ejs file open
-  const app = loadTemplate("js/app.js");
-  const www = loadTemplate("js/www.js");
-
-  // app.js.ejs file Rendering Values
+  const app = loadTemplate("ejs/app.js");
+  const www = loadTemplate("ejs/www.js");
 
   // middleWare import and setting
   app.locals.importModulesList = {};
   app.locals.middleWareList = [];
+  app.locals.sequelizeModuesList = [];
 
   // Request logger
   app.locals.importModulesList.logger = "morgan";
   app.locals.middleWareList.push("logger('dev')");
-  packages.dependencies.morgan = defaultOptions.morgan;
 
   // Body parsers
   app.locals.middleWareList.push("express.json()");
@@ -118,7 +123,12 @@ const createApplication = (appArgs) => {
   // Cookie parser
   app.locals.importModulesList.cookieParser = "cookie-parser";
   app.locals.middleWareList.push("cookieParser()");
-  packages.dependencies["cookie-parser"] = defaultOptions.cookieParser;
+
+  // basic dependency add
+  for (let dep of Object.keys(defaultDependency)) {
+    packages.dependencies[dep] = defaultDependency[dep];
+  }
+  app.locals.middleWareList.push(`express.static(path.join("public"))`);
 
   // sample Router Setting
   app.locals.routerModules = {}; // routes import list
@@ -137,6 +147,21 @@ const createApplication = (appArgs) => {
 
   www.locals.appName = appName;
 
+  // mysql sequelize enable
+  if (options.sequelize) {
+    // app.locals.importModulesList.compass = "mysql2";
+
+    app.locals.sequelizeModuesList.DB = `"../models/index.js"`;
+    packages.dependencies["sequelize"] = sequelizeOption.sequelize;
+    packages.dependencies["mysql2"] = sequelizeOption.mysql2;
+
+    mkdir(dir, "models");
+    mkdir(dir, "config");
+    copyTemplateMulti("models", dir + "/models", "*.js");
+    copyTemplateMulti("models/config", dir + "/config", "*.js");
+  }
+
+  // package.json create
   packages.dependencies = sortedObject(packages.dependencies);
 
   // www.js, app.js write
@@ -148,7 +173,7 @@ const createApplication = (appArgs) => {
   );
 
   // router copy
-  copyTemplateMulti("js/routes", dir + "/routes", "*.js");
+  copyTemplateMulti("routes", dir + "/routes", "*.js");
 
   // view copy
   if (options.view)

@@ -1,9 +1,14 @@
-const defaultOptions = {
+const defaultDependency = {
   debug: "~4.3.4",
   express: "~4.18.2",
-  cookieParser: "~1.4.6",
-  httpErrors: "~2.0.0",
+  "cookie-parser": "~1.4.6",
+  // "http-errors": "~2.0.0",
   morgan: "~1.10.0",
+};
+
+const sequelizeOption = {
+  mysql2: "~2.3.3",
+  sequelize: "~6.25.5",
 };
 
 const cssOptions = {
@@ -20,4 +25,4 @@ const viewOptions = {
   pug: "~3.0.2",
 };
 
-export { defaultOptions, cssOptions, viewOptions };
+export { defaultDependency, sequelizeOption, cssOptions, viewOptions };

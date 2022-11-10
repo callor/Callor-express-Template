@@ -29,6 +29,11 @@
 
 - Source Code refactoring
 
+### 2022. 11. 11
+
+- MySQL and Sequelize init sample
+- `express project --pug --sequelize`
+
 ## 참조 원본출처 : Reference original source
 
 - https://github.com/expressjs/generator

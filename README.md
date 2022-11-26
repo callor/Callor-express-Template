@@ -29,10 +29,16 @@
 
 - Source Code refactoring
 
-### :carousel_horse: Upgrade V2.1.0( 2022. 11. 11 )
+### :carousel_horse: Upgrade
+
+### V2.1.0( 2022. 11. 11 )
 
 - MySQL and Sequelize init sample
 - `express project --pug --sequelize`
+
+### V2.1.10( 2022. 11. 26 )
+
+- Mac and Linux Bug Patch
 
 ## 참조 출처 : Reference source
 

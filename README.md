@@ -23,13 +23,13 @@
   // Disable the fingerprinting of this web technology. 경고 방지(avoid warning)  
    `app.disable("x-powered-by");`
 
-### :carousel_horse: since : 2020-12-10
+## :carousel_horse: History
 
-### :carousel_horse: Upgrade V2.0.1( 2022. 11. 04 )
+### Since : 2020-12-10
+
+### V2.0.1( 2022. 11. 04 )
 
 - Source Code refactoring
-
-### :carousel_horse: Upgrade
 
 ### V2.1.0( 2022. 11. 11 )
 

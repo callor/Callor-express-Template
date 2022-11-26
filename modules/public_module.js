@@ -16,7 +16,10 @@ const VERSION = JSON.parse(packageData).version;
 const MODE_0666 = parseInt("0666", 8);
 const MODE_0755 = parseInt("0755", 8);
 const tempURL = new URL("../templates", import.meta.url); // path.join("templates");
-const TEMPLATE_DIR = tempURL.pathname.substring(1);
+const TEMPLATE_DIR =
+  process.platform === "win32"
+    ? tempURL.pathname.substring(1)
+    : tempURL.pathname;
 
 // console confirm blocking input
 const confirm = (msg, cb) => {

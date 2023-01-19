@@ -6,7 +6,15 @@
   "install": "npm install -g express-21c",
   "type": "module",
   "keywords": [
+    "javascript",
+    "vanila",
+    "nodejs",
+    "es5",
+    "es6",
+    "ecma-script,",
+    "ecmascript,",
     "express",
+    "express-generator",
     "framework",
     "web",
     "rest",
@@ -16,6 +24,7 @@
     "api",
     "module",
     "import",
+    "pug",
     "mysql",
     "sequelize"
   ],

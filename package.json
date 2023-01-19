@@ -37,7 +37,6 @@
   "dependencies": {
     "commander": "^9.4.1",
     "ejs": "^3.1.8",
-    "express-21c": "^2.1.30",
     "minimatch": "^5.1.0",
     "minimist": "*",
     "mkdirp": "^1.0.4",

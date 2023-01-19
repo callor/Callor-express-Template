@@ -1,9 +1,10 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "1.9.3",
+  "version": "2.0.0",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
+  "type": "module",
   "keywords": [
     "express",
     "framework",

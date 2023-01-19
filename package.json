@@ -1,12 +1,20 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "2.0.0",
+  "version": "2.1.33",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "type": "module",
   "keywords": [
+    "javascript",
+    "vanila",
+    "nodejs",
+    "es5",
+    "es6",
+    "ecma-script,",
+    "ECMAscript,",
     "express",
+    "express-generator",
     "framework",
     "web",
     "rest",
@@ -15,53 +23,60 @@
     "app",
     "api",
     "module",
-    "import"
+    "import",
+    "pug",
+    "mysql",
+    "sequelize"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/callor/Node_Express_Ex6_Template.git"
+    "url": "https://github.com/callor/express-21c.git"
   },
   "homepage": "https://www.callor.com",
   "license": "(MIT OR Apache-2.0)",
   "dependencies": {
-    "commander": "^2.15.1",
-    "ejs": "^3.1.6",
-    "minimatch": "^3.0.4",
+    "commander": "^9.4.1",
+    "ejs": "^3.1.8",
+    "minimatch": "^5.1.0",
+    "minimist": "*",
     "mkdirp": "^1.0.4",
+    "path": "*",
     "sorted-object": "^2.0.1"
   },
   "main": "bin/express-21c.js",
   "preferGlobal": true,
   "bin": {
-    "express-21c": "./bin/express-21c.js"
+    "express": "./bin/express-21c.js"
   },
   "devDependencies": {
-    "eslint": "^8.7.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint": "^8.26.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^5.0.0",
-    "mocha": "^9.2.0",
+    "mocha": "^10.1.0",
     "rimraf": "^3.0.2",
-    "supertest": "^6.2.2",
+    "supertest": "^6.3.1",
     "tree-kill": "^1.2.2",
     "uid-safe": "^2.1.5",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^5.0.0"
   },
   "engines": {
     "node": ">= 12.0"
   },
   "files": [
     "LICENSE",
+    "package.json",
     "bin/",
     "templates/",
-    "templates-commons/",
-    "templates-module/"
+    "config/",
+    "modules/"
   ],
   "scripts": {
     "lint": "eslint .",
     "test": "mocha --reporter spec --bail --check-leaks test/",
-    "test-ci": "mocha --reporter spec --check-leaks test/"
+    "test-ci": "mocha --reporter spec --check-leaks test/",
+    "exec": "node ./bin/express-21c.js test --pug --sequelize"
   }
 }

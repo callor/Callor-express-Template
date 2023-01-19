@@ -44,7 +44,3 @@
 ### V2.1.10( 2022. 11. 26 )
 
 - Mac and Linux Bug Patch
-
-## 참조 출처 : Reference source
-
-- https://github.com/expressjs/generator

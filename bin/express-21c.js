@@ -187,6 +187,8 @@ const createApplication = (appArgs) => {
   else if (typeof options.css === "string")
     copyTemplateMulti("css", dir + "/public/css", `*.${options.css}`);
 
+  copyTemplateMulti("", dir + "/", "README.md");
+
   // CSS Engine support
   switch (options.css) {
     case "compass":

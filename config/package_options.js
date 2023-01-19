@@ -7,8 +7,8 @@ const defaultDependency = {
 };
 
 const sequelizeOption = {
-  mysql2: "~2.3.3",
-  sequelize: "~6.25.5",
+  mysql2: "~3.0.1",
+  sequelize: "~6.28.0",
 };
 
 const cssOptions = {

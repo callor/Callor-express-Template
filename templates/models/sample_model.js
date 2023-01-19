@@ -1,7 +1,7 @@
-import Sequelize from "sequelize";
+import Sequelize from 'sequelize'
 export default (sequelize) => {
   return sequelize.define(
-    "tbl_student",
+    'tbl_student',
     {
       st_num: {
         type: Sequelize.DataTypes.STRING(5),
@@ -31,16 +31,16 @@ export default (sequelize) => {
     },
     {
       sequelize,
-      tableName: "tbl_student",
+      tableName: 'tbl_student',
       timestamps: false,
       indexes: [
         {
-          name: "PRIMARY",
+          name: 'PRIMARY',
           unique: true,
-          using: "BTREE",
-          fields: [{ name: "st_num" }],
+          using: 'BTREE',
+          fields: [{ name: 'st_num' }],
         },
       ],
     }
-  );
-};
+  )
+}

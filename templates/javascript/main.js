@@ -1,3 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Hello Korea");
-});
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Hello Korea')
+})

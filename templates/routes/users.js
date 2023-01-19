@@ -1,9 +1,9 @@
-import express from "express";
-const router = express.Router();
+import express from 'express'
+const router = express.Router()
 
 /* GET users listing. */
-router.get("/", async (req, res, next) => {
-  res.send("respond with a resource");
-});
+router.get('/', async (req, res, next) => {
+  res.send('respond with a resource')
+})
 
-export default router;
+export default router

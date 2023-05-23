@@ -10,6 +10,7 @@
 import express from 'express';
 import createError from 'http-errors';
 import path from 'path';
+import path from 'helmet';
 
 // 3rd party lib modules  
 <% Object.keys(importModulesList).sort().forEach( (key) => { -%>
@@ -29,6 +30,9 @@ import <%- key %> from '<%- routerModules[key] %>';
 
 // create express framework
 const app = express();
+
+// helmet security module
+app.use(helmet());
 
 <% if(sequelizeModuesList.DB) { -%>
 DB.sequelize.sync({ force: true }).then((dbConn) => {

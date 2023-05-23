@@ -4,6 +4,7 @@ const defaultDependency = {
   'cookie-parser': '~1.4.6',
   'http-errors': '~2.0.0',
   morgan: '~1.10.0',
+  helmet: '~7.0.0',
 }
 
 const sequelizeOption = {

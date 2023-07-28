@@ -6,43 +6,19 @@
 import fs from 'fs'
 import parseArgs from 'minimist'
 import path from 'path'
-import {
-  defaultDependency,
-  sequelizeOption,
-  cssOptions,
-  viewOptions,
-} from '../config/package_options.js'
+import { defaultDependency, sequelizeOption, cssOptions, viewOptions } from '../config/package_options.js'
 
 import sortedObject from 'sorted-object'
 import helpMessage from '../modules/help.js'
-import {
-  VERSION,
-  confirm,
-  mkdir,
-  fileWrite,
-  finish,
-  loadTemplate,
-  copyTemplate,
-  copyTemplateMulti,
-} from '../modules/public_module.js'
+import { VERSION, confirm, mkdir, fileWrite, finish, loadTemplate, copyTemplate, copyTemplateMulti } from '../modules/public_module.js'
 
 const MODE_0755 = parseInt('0755', 8)
 
 // CLI
 const unknown = []
 const args = parseArgs(process.argv.slice(2), {
-  alias: { c: 'css', e: 'ejs', p: 'pug', f: 'force', h: 'help', v: 'view','sq','sequelize' },
-  boolean: [
-    'ejs',
-    'pug',
-    'hbs',
-    'hogan',
-    'force',
-    'sequelize',
-    'git',
-    'help',
-    'version',
-  ],
+  alias: { c: 'css', e: 'ejs', p: 'pug', f: 'force', h: 'help', v: 'view', sq: 'sequelize' },
+  boolean: ['ejs', 'pug', 'hbs', 'hogan', 'force', 'sequelize', 'git', 'help', 'version'],
   default: { css: true, view: true },
   string: ['css', 'view'],
   unknown: function (s) {
@@ -125,10 +101,10 @@ const createApplication = (appArgs) => {
   app.locals.middleWareList.push('cookieParser()')
 
   // basic dependency add
-  for (let dep of Object.keys(defaultDependency)) {
+  for (const dep of Object.keys(defaultDependency)) {
     packages.dependencies[dep] = defaultDependency[dep]
   }
-  app.locals.middleWareList.push(`express.static(path.join("public"))`)
+  app.locals.middleWareList.push('express.static(path.join("public"))')
 
   // sample Router Setting
   app.locals.routerModules = {} // routes import list
@@ -150,8 +126,8 @@ const createApplication = (appArgs) => {
   // mysql sequelize enable
   if (options.sequelize) {
     app.locals.sequelizeModuesList.DB = '../models/index.js'
-    packages.dependencies['sequelize'] = sequelizeOption.sequelize
-    packages.dependencies['mysql2'] = sequelizeOption.mysql2
+    packages.dependencies.sequelize = sequelizeOption.sequelize
+    packages.dependencies.mysql2 = sequelizeOption.mysql2
 
     mkdir(dir, 'models')
     mkdir(dir, 'config')
@@ -165,27 +141,25 @@ const createApplication = (appArgs) => {
   // www.js, app.js write
   fileWrite(path.join(dir, 'bin/app.js'), app.render())
   fileWrite(path.join(dir, 'bin/www.js'), www.render(), MODE_0755)
-  fileWrite(
-    path.join(dir, 'package.json'),
-    JSON.stringify(packages, null, 2) + '\n'
-  )
+  fileWrite(path.join(dir, 'package.json'), JSON.stringify(packages, null, 2) + '\n')
 
   // router copy
   copyTemplateMulti('routes', dir + '/routes', '*.js')
 
   // view copy
-  if (options.view)
+  if (options.view) {
     copyTemplateMulti('views', dir + '/views', `*.${options.view}`)
-  else copyTemplate('views/index.html', path.join(dir, 'public/index.html'))
+  } else copyTemplate('views/index.html', path.join(dir, 'public/index.html'))
 
   copyTemplateMulti('javascript', dir + '/public/js', '*.js')
   copyTemplateMulti('images', dir + '/public/images', '*.*')
 
   // css templage copy
-  if (options.css === true)
-    copyTemplateMulti('css', dir + '/public/css', `*.css`)
-  else if (typeof options.css === 'string')
+  if (options.css === true) {
+    copyTemplateMulti('css', dir + '/public/css', '*.css')
+  } else if (typeof options.css === 'string') {
     copyTemplateMulti('css', dir + '/public/css', `*.${options.css}`)
+  }
 
   copyTemplateMulti('', dir + '/', 'README.md')
 
@@ -203,11 +177,8 @@ const createApplication = (appArgs) => {
       break
     case 'sass':
       app.locals.importModulesList.sassMiddleware = 'node-sass-middleware'
-      app.locals.middleWareList.push(
-        "sassMiddleware({\n  src: path.join('public'),\n  dest: path.join('public'),\n  indentedSyntax: true, // true = .sass and false = .scss\n  sourceMap: true\n})"
-      )
-      packages.dependencies['node-sass-middleware'] =
-        cssOptions.nodeSassMmiddleware
+      app.locals.middleWareList.push("sassMiddleware({\n  src: path.join('public'),\n  dest: path.join('public'),\n  indentedSyntax: true, // true = .sass and false = .scss\n  sourceMap: true\n})")
+      packages.dependencies['node-sass-middleware'] = cssOptions.nodeSassMmiddleware
       break
     case 'stylus':
       app.locals.importModulesList.stylus = 'stylus'
@@ -240,17 +211,16 @@ const main = async (options, done) => {
     console.log('version:', VERSION)
   } else if (!options.css) {
     helpMessage()
-    consoleMessage('error', `option '-c, --css <engine>' argument missing`)
+    consoleMessage('error', "option '-c, --css <engine>' argument missing")
   } else if (!options.view) {
     helpMessage()
-    consoleMessage('error', `option '-v, --view <engine>' argument missing`)
+    consoleMessage('error', "option '-v, --view <engine>' argument missing")
   } else {
     // Path
     const destinationPath = options._[0] || '.'
 
     // App name
-    const appName =
-      createAppName(path.resolve(destinationPath)) || 'hello-world'
+    const appName = createAppName(path.resolve(destinationPath)) || 'hello-world'
 
     // --ejs, --pug, --hjs or--hbs option
     if (options.view === true) {
@@ -267,10 +237,7 @@ const main = async (options, done) => {
     // 설정이 없으면 pug 를 기본 view 로 설정
     if (options.view === true) {
       options.view = 'pug'
-      consoleMessage(
-        'warning',
-        `option '--${options.view}' has been renamed to '--view=${options.view}'`
-      )
+      consoleMessage('warning', `option '--${options.view}' has been renamed to '--view=${options.view}'`)
     }
 
     // 이미 있는 디렉토리인지 검사

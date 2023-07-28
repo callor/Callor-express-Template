@@ -17,7 +17,7 @@ const MODE_0755 = parseInt('0755', 8)
 // CLI
 const unknown = []
 const args = parseArgs(process.argv.slice(2), {
-  alias: { c: 'css', e: 'ejs', p: 'pug', f: 'force', h: 'help', v: 'view', sq: 'sequelize' },
+  alias: { c: 'css', e: 'ejs', p: 'pug', f: 'force', s: 'sequelize', h: 'help', v: 'view' },
   boolean: ['ejs', 'pug', 'hbs', 'hogan', 'force', 'sequelize', 'git', 'help', 'version'],
   default: { css: true, view: true },
   string: ['css', 'view'],
@@ -224,8 +224,8 @@ const main = async (options, done) => {
 
     // --ejs, --pug, --hjs or--hbs option
     if (options.view === true) {
-      options.view = options.ejs && 'ejs'
-      options.view = options.view || (options.pug && 'pug')
+      options.view = options.pug && 'pug'
+      options.view = options.view || (options.ejs && 'ejs')
       options.view = options.view || (options.hjs && 'hjs')
       options.view = options.view || (options.hbs && 'hbs')
       options.view = options.view || (options.hogan && 'hogan')

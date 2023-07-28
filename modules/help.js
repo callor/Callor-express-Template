@@ -16,9 +16,9 @@ export default () => {
   console.log(
     '    -c, --css <engine>   add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)'
   )
-  console.log('        --sequelize      add mysql2 and sequelize ORM')
+  console.log('     -sq--sequelize      add mysql2 and sequelize ORM')
   console.log('        --git            add .gitignore')
   console.log('    -f, --force          force on non-empty directory')
-  console.log('    --version            output the version number')
+  console.log('        --version        output the version number')
   console.log('    -h, --help           output usage information')
 }

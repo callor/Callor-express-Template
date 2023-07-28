@@ -31,7 +31,7 @@ const MODE_0755 = parseInt('0755', 8)
 // CLI
 const unknown = []
 const args = parseArgs(process.argv.slice(2), {
-  alias: { c: 'css', e: 'ejs', p: 'pug', f: 'force', h: 'help', v: 'view' },
+  alias: { c: 'css', e: 'ejs', p: 'pug', f: 'force', h: 'help', v: 'view','sq','sequelize' },
   boolean: [
     'ejs',
     'pug',

@@ -4,6 +4,7 @@
   "version": "21.2.1",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
+  "exec" : "npmx express-21c project",
   "type": "module",
   "keywords": [
     "javascript",

@@ -9,14 +9,10 @@ export default () => {
   console.log('    -H  --html           add ejs engine & html file  support')
   console.log('        --hbs            add handlebars engine support')
   console.log('        --hogan          add hogan.js engine support')
-  console.log(
-    '    -v, --view <engine>  add view <engine> support (dust|ejs|html|pug|hbs|hogan) (defaults to pug)'
-  )
+  console.log('    -v, --view <engine>  add view <engine> support (dust|ejs|html|pug|hbs|hogan) (defaults to pug)')
   console.log('        --no-view        use static html instead of view engine')
-  console.log(
-    '    -c, --css <engine>   add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)'
-  )
-  console.log('     -sq--sequelize      add mysql2 and sequelize ORM')
+  console.log('    -c, --css <engine>   add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)')
+  console.log('   -sq  --sequelize      add mysql2 and sequelize ORM')
   console.log('        --git            add .gitignore')
   console.log('    -f, --force          force on non-empty directory')
   console.log('        --version        output the version number')

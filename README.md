@@ -16,11 +16,15 @@
 
 `npm install -g express-21c`
 
-### express 프로젝트 생성하기 : express project create
+### express 프로젝트 생성하기  
+
+### express project create
 
 `express my_project && cd my_project`
 
-### express-21c 설치 없이 프로젝트 생성하기 : express project create without express-21c install
+### express-21c 설치 없이 프로젝트 생성하기
+
+### express project create without express-21c install
 
 `npm uninstall -g express-21c`
 `npx express-21c my_project --view=pug && cd my_project`

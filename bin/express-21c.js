@@ -52,7 +52,7 @@ const createAppName = (pathName) => {
     .toLowerCase()
 }
 const createApplication = (appArgs) => {
-  const { appName, dir, options, done } = appArgs
+  const { appName, dir, options } = appArgs
   if (dir !== '.') {
     mkdir(dir, '.')
   }

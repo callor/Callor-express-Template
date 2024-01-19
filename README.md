@@ -32,20 +32,20 @@
 
 ### Since : 2020-12-10
 
-### V2.0.1( 2022. 11. 04 )
+### V21.1.1( 2022. 11. 04 )
 
 - Source Code refactoring
 
-### V2.1.0( 2022. 11. 11 )
+### V21.2.0( 2022. 11. 11 )
 
 - MySQL and Sequelize init sample
 - `express project --pug --sequelize`
 
-### V2.1.10( 2022. 11. 26 )
+### V21.2.1( 2022. 11. 26 )
 
 - Mac and Linux Bug Patch
 
-### V2.2.3( 2024. 01. 19)
+### V21.2.3( 2024. 01. 19)
 
 - Dependency Upgrade
 

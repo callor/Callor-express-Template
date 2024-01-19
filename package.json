@@ -37,11 +37,11 @@
   "license": "(MIT OR Apache-2.0)",
   "dependencies": {
     "commander": "^9.4.1",
-    "ejs": "^3.1.8",
+    "ejs": "^3.1.9",
     "minimatch": "^5.1.0",
     "minimist": "*",
     "mkdirp": "^1.0.4",
-    "path": "*",
+    "path": "^0.12.7",
     "sorted-object": "^2.0.1"
   },
   "main": "bin/express-21c.js",

@@ -2,7 +2,7 @@
 * express generator ES6+ Template
 * @author : callor@callor.com
 * @since : 2020-12-10
-* @update : 2023-01-19
+* @update : 2024-01-19
 * @see : nodejs + express 프로젝트에서 ES6+ 문법을 사용하기 위한 template
 */
 <%// 필수 항목 import %>
@@ -23,7 +23,7 @@ import <%- key %> from '<%- importModulesList[key] %>';
 import <%- key %> from '<%- sequelizeModuesList[key] %>';
 <% }); -%>
 
-// sample router modules
+// import router modules
 <% Object.keys(routerModules).sort().forEach( (key) => { -%>
 import <%- key %> from '<%- routerModules[key] %>';
 <% }); -%>
@@ -60,7 +60,7 @@ app.set('view engine', '<%- view.engine %>');
 app.use(<%- middle %>);
 <% }); -%>
 
-// router link enable
+// router link enable, link connection
 <% routerMounts.forEach((router)=> { -%>
 app.use(<%= router.path %>, <%- router.module %>);
 <% }); -%>

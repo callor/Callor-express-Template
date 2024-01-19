@@ -16,9 +16,14 @@
 
 `npm install -g express-21c`
 
-## express 프로젝트 생성하기 : express project create
+### express 프로젝트 생성하기 : express project create
 
-`express my_project --view=pug && cd my_project`
+`express my_project && cd my_project`
+
+### express-21c 설치 없이 프로젝트 생성하기 : express project create without express-21c install
+
+`npm uninstall -g express-21c`
+`npx express-21c my_project --view=pug && cd my_project`
 
 ### 추가 수정사항 : PS
 
@@ -45,9 +50,13 @@
 
 - Mac and Linux Bug Patch
 
-### V21.2.3( 2024. 01. 19)
+### V21.2.30( 2024. 01. 19)
 
 - Dependency Upgrade
+
+### V21.2.31( 2024. 01. 19)
+
+- `npx 설치 방법 추가`
 
 ## 참조 출처 : Reference source
 

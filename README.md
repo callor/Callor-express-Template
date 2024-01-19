@@ -45,6 +45,10 @@
 
 - Mac and Linux Bug Patch
 
+### V2.2.3( 2024. 01. 19)
+
+- Dependency Upgrade
+
 ## 참조 출처 : Reference source
 
-- https://github.com/expressjs/generator
+- <https://github.com/expressjs/generator>

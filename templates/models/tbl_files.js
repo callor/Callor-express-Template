@@ -20,10 +20,12 @@ export default (sequelize) => {
       f_image: {
         type: DataTypes.STRING(255),
         allowNull: true,
+        defaultValue: '',
       },
       f_origin_image: {
         type: DataTypes.STRING(255),
         allowNull: true,
+        defaultValue: '',
       },
     },
 

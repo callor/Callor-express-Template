@@ -1,5 +1,5 @@
-import _sequelize from 'sequelize'
-const DataTypes = _sequelize.DataTypes
+import { DataTypes } from 'sequelize'
+
 import _tbl_authors from './tbl_authors.js'
 import _tbl_users from './tbl_users.js'
 

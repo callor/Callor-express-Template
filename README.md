@@ -16,15 +16,11 @@
 
 `npm install -g express-21c`
 
-### express 프로젝트 생성하기  
-
-### express project create
+### express project create : express 프로젝트 생성하기  
 
 `express my_project && cd my_project`
 
-### express-21c 설치 없이 프로젝트 생성하기
-
-### express project create without express-21c install
+### express project create without express-21c install : express-21c 설치 없이 프로젝트 생성하기
 
 `npm uninstall -g express-21c`
 `npx express-21c my_project --view=pug && cd my_project`
@@ -62,6 +58,6 @@
 
 - `npx 설치 방법 추가`
 
-## 참조 출처 : Reference source
+#### 참조 출처 : Reference source
 
 - <https://github.com/expressjs/generator>

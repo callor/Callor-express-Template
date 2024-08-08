@@ -8,12 +8,14 @@
 - Set default view to pug : 기본 view를 pug로 설정  
 - Change the template source code to conform to ES6+ grammar: ES6+ 문법에 맞도록 Template 소스 코드 변경  
 
-### Create a Back-End project using express-21c  
-express-21c를 사용하여 Back-End 프로젝트 생성
-
+### Create a Back-End project using express-21c : 프로젝트 생성 
+- 기존에 설치된 express-21c 가 있으면 삭제 후 실행
 ```sh
 npm uninstall -g express-21c
-npx express-21c my_project --view=pug && cd my_project
+npx express-21c my_project --view=pug 
+cd my_project
+npm install
+nodemon
 ```
 
 ## :carousel_horse: History

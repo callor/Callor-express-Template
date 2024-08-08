@@ -1,6 +1,6 @@
 const defaultDependency = {
   debug: '~4.3.4',
-  express: '~4.18.2',
+  express: '~4.19.2',
   'cookie-parser': '~1.4.6',
   'http-errors': '~2.0.0',
   morgan: '~1.10.0',
@@ -8,8 +8,8 @@ const defaultDependency = {
 }
 
 const sequelizeOption = {
-  mysql2: '~3.7.0',
-  sequelize: '~6.35.2',
+  mysql2: '~3.11.0',
+  sequelize: '~6.37.3',
 }
 
 const cssOptions = {

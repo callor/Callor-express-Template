@@ -8,34 +8,26 @@
 - Set default view to pug : 기본 view를 pug로 설정  
 - Change the template source code to conform to ES6+ grammar: ES6+ 문법에 맞도록 Template 소스 코드 변경  
 
-## 설치(install) : global install
+### Create a Back-End project using express-21c : express-21c를 사용하여 Back-End 프로젝트 생성
 
-`npm install -g express-21c`
-
-### express project create : express 프로젝트 생성하기  
-
-`express my_project && cd my_project`
-
-### express project create without express-21c install : express-21c 설치 없이 프로젝트 생성하기
-
-`npm uninstall -g express-21c`
-`npx express-21c my_project --view=pug && cd my_project`
-
-### 추가 수정사항 : PS
-
-- Add the following code to your app.js file: app.js 파일에 다음 코드 추가  
-  
-
-  // Disable the fingerprinting of this web technology. 경고 방지(avoid warning)  
-   `app.disable("x-powered-by");`
+```sh
+npm uninstall -g express-21c
+npx express-21c my_project --view=pug && cd my_project
+```
 
 ## :carousel_horse: History
 
 ### Since : 2020-12-10
-
 ### V21.1.1( 2022. 11. 04 )
 
 - Source Code refactoring
+- Add the following code to your app.js file: app.js 파일에 다음 코드 추가  
+ 
+```js
+// Disable the fingerprinting of this web technology. 경고 방지(avoid warning)  
+`app.disable("x-powered-by");`
+```   
+
 
 ### V21.2.0( 2022. 11. 11 )
 

@@ -8,7 +8,7 @@
 - new version : `Not install`
 
 ## express 프로젝트 생성하기 : express create project
-- old version : `express my_project --view=pug && cd my_project` : `Not used`
+- old version(not used) : `express my_project --view=pug && cd my_project`
 
 ## new version
 - 기존에 설치된 express-21c 가 있으면 삭제 후 실행 : If you have an existing express-21c installed, delete it and then run it.
@@ -47,8 +47,9 @@ app.disable("x-powered-by");
 ### V2.1.0( 2022. 11. 11 )
 
 - MySQL and Sequelize init sample
-- `npx express-21c [project] --pug --sequelize`
-
+```sh
+npx express-21c [project] --pug --sequelize
+```
 ### V2.1.10( 2022. 11. 26 )
 
 - Mac and Linux Bug Patch

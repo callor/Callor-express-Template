@@ -6,15 +6,19 @@
 
 - Enable ES6+ syntax : ES5+ 문법을 사용할 수 있도록 설정  
 - Set default view to pug : 기본 view를 pug로 설정  
-- Change the template source code to conform to ES6+ grammar: ES6+ 문법에 맞도록 Template 소스 코드 변경  
+- Change the template source code to conform to ES6+ grammar: ES5+ 문법에 맞도록 Template 소스 코드 변경  
 
 ### Create a Back-End project using express-21c : 프로젝트 생성 
 - 기존에 설치된 express-21c 가 있으면 삭제 후 실행
 ```sh
 npm uninstall -g express-21c
+
+- new version create project
+```sh
 npx express-21c my_project --view=pug 
 cd my_project
 npm install
+
 nodemon
 ```
 
@@ -34,7 +38,9 @@ nodemon
 ### V21.2.0( 2022. 11. 11 )
 
 - MySQL and Sequelize init sample
-- `npx express-21c [project] --pug --sequelize`
+```sh
+npx express-21c [project] --pug --sequelize
+```
 
 ### V21.2.1( 2022. 11. 26 )
 

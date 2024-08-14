@@ -34,7 +34,7 @@ nodemon
 ### V21.2.0( 2022. 11. 11 )
 
 - MySQL and Sequelize init sample
-- `express project --pug --sequelize`
+- `npx express-21c [project] --pug --sequelize`
 
 ### V21.2.1( 2022. 11. 26 )
 

@@ -26,7 +26,6 @@ npm install
 nodemon
 ```
 
-
 ### 추가 수정사항 : PS
 
 - app.js 파일에 다음 코드 추가  

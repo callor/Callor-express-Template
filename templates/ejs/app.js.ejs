@@ -1,9 +1,9 @@
 /**
-* express generator ES6+ Template
+* express generator ES5+ Template
 * @author : callor@callor.com
 * @since : 2020-12-10
-* @update : 2024-01-19
-* @see : nodejs + express 프로젝트에서 ES6+ 문법을 사용하기 위한 template
+* @update : 2024-08-14
+* @see : Template for using ES5+ syntax in nodejs + express project
 */
 <%// 필수 항목 import %>
 // essential modules
@@ -35,8 +35,8 @@ const app = express();
 app.use(helmet());
 
 <% if(sequelizeModuesList.DB) { -%>
-// MySQL DB 연결
-// 주의!!! force 를 true 로 하면 기존의 Table 을 모두 DROP 한 후 재생성 한다
+// Start connecting to MySQL DB using Sequelize
+// Caution!!! If force is set to true, all existing tables will be dropped and recreated.
 DB.sequelize.sync({ force: false }).then((dbConn) => {
   console.log(dbConn.options.host, dbConn.config.database, "DB Connection OK");
 });

@@ -12,6 +12,7 @@
 - 기존에 설치된 express-21c 가 있으면 삭제 후 실행
 ```sh
 npm uninstall -g express-21c
+```
 
 - new version create project
 ```sh

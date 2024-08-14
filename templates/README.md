@@ -3,15 +3,9 @@
 - 21세기를 통과하는 express-generator  
   express-generator through the 21st century
 
-## express generator 설치하기 : express generator install
-- old version : `npm install -g express-21c`
-- new version : `Not install`
-
 ## express 프로젝트 생성하기 : express create project
-- old version(not used) : `express my_project --view=pug && cd my_project`
-
-## new version
 - 기존에 설치된 express-21c 가 있으면 삭제 후 실행 : If you have an existing express-21c installed, delete it and then run it.
+
 - old version uninstall
 ```sh
 npm uninstall -g express-21c
@@ -22,6 +16,7 @@ npm uninstall -g express-21c
 npx express-21c my_project --view=pug 
 cd my_project
 npm install
+
 nodemon
 ```
 

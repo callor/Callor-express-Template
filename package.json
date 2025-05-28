@@ -36,11 +36,11 @@
   "homepage": "https://www.callor.com",
   "license": "(MIT OR Apache-2.0)",
   "dependencies": {
-    "commander": "^9.4.1",
-    "ejs": "^3.1.9",
-    "minimatch": "^5.1.0",
+    "commander": "^14.0.0",
+    "ejs": "^3.1.10",
+    "minimatch": "^10.0.1",
     "minimist": "*",
-    "mkdirp": "^1.0.4",
+    "mkdirp": "^3.0.1",
     "path": "^0.12.7",
     "sorted-object": "^2.0.1"
   },
@@ -50,18 +50,13 @@
     "express": "./bin/express-21c.js"
   },
   "devDependencies": {
-    "eslint": "^8.26.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-standard": "^5.0.0",
-    "mocha": "^10.1.0",
-    "rimraf": "^3.0.2",
-    "supertest": "^6.3.1",
+    "eslint": "^9.27.0",
+    "mocha": "^11.5.0",
+    "rimraf": "^6.0.1",
+    "supertest": "^7.1.1",
     "tree-kill": "^1.2.2",
     "uid-safe": "^2.1.5",
-    "validate-npm-package-name": "^5.0.0"
+    "validate-npm-package-name": "^6.0.0"
   },
   "engines": {
     "node": ">= 12.0"

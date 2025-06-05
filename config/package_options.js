@@ -1,15 +1,15 @@
 const defaultDependency = {
-  debug: '~4.3.4',
-  express: '~4.19.2',
-  'cookie-parser': '~1.4.6',
+  debug: '~4.4.1',
+  express: '~5.1.0',
+  'cookie-parser': '~1.4.7',
   'http-errors': '~2.0.0',
   morgan: '~1.10.0',
-  helmet: '~7.0.0',
+  helmet: '~8.1.0',
 }
 
 const sequelizeOption = {
-  mysql2: '~3.11.0',
-  sequelize: '~6.37.3',
+  mysql2: '~3.14.1',
+  sequelize: '~6.37.7',
 }
 
 const cssOptions = {
@@ -20,10 +20,10 @@ const cssOptions = {
 }
 
 const viewOptions = {
-  ejs: '~3.1.8',
+  ejs: '~3.1.10',
   hbs: '~4.2.0',
   hjs: '~0.0.6',
-  pug: '~3.0.2',
+  pug: '~3.0.3',
 }
 
 export { defaultDependency, sequelizeOption, cssOptions, viewOptions }

@@ -1,7 +1,7 @@
 {
   "name": "express-21c",
   "description": "Express Module' application generator",
-  "version": "21.3.25",
+  "version": "21.5.06",
   "author": "Bosco John <callor@callor.com>",
   "install": "npm install -g express-21c",
   "exec": "npx express-21c [project] or express [project]",
@@ -50,7 +50,7 @@
     "express": "./bin/express-21c.js"
   },
   "devDependencies": {
-    "eslint": "^9.27.0",
+    "eslint": "^9.28.0",
     "mocha": "^11.5.0",
     "rimraf": "^6.0.1",
     "supertest": "^7.1.1",

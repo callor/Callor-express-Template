@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import readline from 'readline'
 import mkdirp from 'mkdirp'
-import minimatch from 'minimatch'
+import { minimatch } from 'minimatch'
 
 // ejs file render
 import ejs from 'ejs'
@@ -16,10 +16,7 @@ const VERSION = JSON.parse(packageData).version
 const MODE_0666 = parseInt('0666', 8)
 const MODE_0755 = parseInt('0755', 8)
 const tempURL = new URL('../templates', import.meta.url) // path.join("templates");
-const TEMPLATE_DIR =
-  process.platform === 'win32'
-    ? tempURL.pathname.substring(1)
-    : tempURL.pathname
+const TEMPLATE_DIR = process.platform === 'win32' ? tempURL.pathname.substring(1) : tempURL.pathname
 
 // console confirm blocking input
 const confirm = (msg, cb) => {
@@ -78,8 +75,7 @@ const copyTemplateMulti = (fromDir, toDir, nameGlob) => {
 }
 
 const finish = (dir, appName, app = null) => {
-  const launchedCmd =
-    process.platform === 'win32' && process.env._ === undefined
+  const launchedCmd = process.platform === 'win32' && process.env._ === undefined
 
   const prompt = launchedCmd ? '>' : '$'
 
@@ -108,13 +104,4 @@ const finish = (dir, appName, app = null) => {
   }
 }
 
-export {
-  VERSION,
-  confirm,
-  mkdir,
-  loadTemplate,
-  fileWrite,
-  copyTemplate,
-  copyTemplateMulti,
-  finish,
-}
+export { VERSION, confirm, mkdir, loadTemplate, fileWrite, copyTemplate, copyTemplateMulti, finish }
